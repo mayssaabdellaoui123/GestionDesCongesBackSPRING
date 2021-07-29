@@ -1,9 +1,5 @@
 package ConsomiTounsi.pdf;
 
-import ConsomiTounsi.entities.Order;
-import ConsomiTounsi.entities.Payment;
-import ConsomiTounsi.repository.OrderRepository;
-import ConsomiTounsi.repository.PaymentRepository;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -20,7 +16,7 @@ import java.util.Date;
 
 
 
-@Service
+/*@Service
 public class PdfServiceImpl implements PdfService {
 
     @Autowired
@@ -216,7 +212,7 @@ public class PdfServiceImpl implements PdfService {
 
                          */
 
-                        Paragraph titrefin = new Paragraph("THANK YOU FOR\r\nUSING OUR SERVICE.", subFont);
+                     /*   Paragraph titrefin = new Paragraph("THANK YOU FOR\r\nUSING OUR SERVICE.", subFont);
                         titrefin.setAlignment(Element.ALIGN_LEFT);
 
 
@@ -281,7 +277,7 @@ public class PdfServiceImpl implements PdfService {
 
                          */
 
-                        my_pdf_report.close();
+                  /*      my_pdf_report.close();
                         file.close();
 
                         Runtime.getRuntime()
@@ -304,5 +300,5 @@ public class PdfServiceImpl implements PdfService {
             e.printStackTrace();
         }
         return "" + idPayment + "_" + formater.format(d) + ".pdf";
-    }
-}
+    }*/
+/*}*/

@@ -80,17 +80,17 @@ public class Client extends User implements Serializable {
 	}
 
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="client")
-	private Set<Advertisement> advertisement;
+   /* @OneToMany(cascade = CascadeType.ALL, mappedBy="client")
+	private Set<Advertisement> advertisement;*/
 
 	/*@ManyToMany(cascade = CascadeType.ALL)
 	private List<Event> event;*/
 
-	@JsonIgnore
+/*	@JsonIgnore
 	@ManyToMany(mappedBy="clients",cascade= CascadeType.PERSIST,fetch = FetchType.EAGER)
-	private List<Event> events;
+	private List<Event> events;*/
 
-	public boolean addEvent(Event ev) {
+	/*public boolean addEvent(Event ev) {
 		if(events == null)
 			events = new ArrayList<>();
 
@@ -102,7 +102,7 @@ public class Client extends User implements Serializable {
 			events = new ArrayList<>();
 
 		return events.remove(ev);
-	}
+	}*/
 
 
 

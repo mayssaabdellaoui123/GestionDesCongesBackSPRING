@@ -106,10 +106,10 @@ public class Deliverer extends User implements Serializable {
 	}
 	
 	
-	@OneToMany(mappedBy="deliverer",
+	/*@OneToMany(mappedBy="deliverer",
 			cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
 			fetch= FetchType.LAZY)
-	private List<Delivery> delivery = new ArrayList<>();
+	private List<Delivery> delivery = new ArrayList<>();*/
 
 
 	/*@OneToMany(cascade = CascadeType.ALL, mappedBy="deliverer")

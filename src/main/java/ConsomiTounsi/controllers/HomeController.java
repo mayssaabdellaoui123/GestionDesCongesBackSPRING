@@ -9,7 +9,7 @@ import ConsomiTounsi.configuration.security.UserDetailsService;
 import ConsomiTounsi.configuration.token.JWTUtility;
 import ConsomiTounsi.configuration.token.JwtRequest;
 import ConsomiTounsi.configuration.token.JwtResponse;
-import ConsomiTounsi.controllers.mouadh_Controllers.MessageResponseModel;
+import ConsomiTounsi.controllers.mouadh_controllers.MessageResponseModel;
 import ConsomiTounsi.entities.Admin;
 import ConsomiTounsi.entities.Client;
 import ConsomiTounsi.entities.User;

@@ -1,7 +1,5 @@
-package ConsomiTounsi.upload_service;
+/*package ConsomiTounsi.upload_service;
 
-import ConsomiTounsi.entities.Product;
-import ConsomiTounsi.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,9 +9,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Optional;
+import java.util.Optional;*/
 
-@Service
+/*@Service
 public class uploadService1 {
     @Autowired
     ProductRepository productRepository;
@@ -44,3 +42,4 @@ public class uploadService1 {
     }
 
 }
+*/

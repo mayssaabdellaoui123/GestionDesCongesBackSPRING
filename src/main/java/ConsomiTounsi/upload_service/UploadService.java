@@ -1,8 +1,6 @@
-package ConsomiTounsi.upload_service;
+/*package ConsomiTounsi.upload_service;
 
 
-import ConsomiTounsi.entities.Product;
-import ConsomiTounsi.repository.ProductRepository;
 import com.google.zxing.Reader;
 import com.google.zxing.*;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
@@ -21,9 +19,9 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Optional;
+import java.util.Optional;*/
 
-@Service
+/*@Service
 public class UploadService {
 
 
@@ -115,7 +113,7 @@ public class UploadService {
 
 */
 
-    public Resource loadFileAsResource(String picsName) throws MalformedURLException {
+   /* public Resource loadFileAsResource(String picsName) throws MalformedURLException {
 
 
         Path filePath = this.fileStorageLocation.resolve(picsName).normalize();
@@ -140,4 +138,4 @@ public class UploadService {
     }
 
 
-}
+}*/

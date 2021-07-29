@@ -1,4 +1,4 @@
-package ConsomiTounsi.Upload_shelf;
+/*package ConsomiTounsi.Upload_shelf;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -26,4 +26,4 @@ public class Uploadcontrollershelf {
     public ResponseEntity<?> uploadFil2(@RequestParam MultipartFile file ) throws IOException {
         return uploadService.uploadFilEvent(file);
     }
-}
+}*/

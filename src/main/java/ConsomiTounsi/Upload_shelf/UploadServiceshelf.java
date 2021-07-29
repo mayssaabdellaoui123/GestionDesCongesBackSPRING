@@ -1,12 +1,6 @@
-package ConsomiTounsi.Upload_shelf;
+/*package ConsomiTounsi.Upload_shelf;
 
 
-import ConsomiTounsi.entities.Event;
-import ConsomiTounsi.entities.Product;
-import ConsomiTounsi.entities.Shelf;
-import ConsomiTounsi.repository.EventRepository;
-import ConsomiTounsi.repository.ProductRepository;
-import ConsomiTounsi.repository.ShelfRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +10,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Optional;
+import java.util.Optional;*/
 
-@Service
+/*@Service
 public class UploadServiceshelf {
 
     @Autowired
@@ -78,4 +72,4 @@ public class UploadServiceshelf {
 
 
 }
-
+*/

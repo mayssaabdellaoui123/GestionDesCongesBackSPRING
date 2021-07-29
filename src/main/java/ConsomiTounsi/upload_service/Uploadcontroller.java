@@ -1,4 +1,4 @@
-package ConsomiTounsi.upload_service;
+/*package ConsomiTounsi.upload_service;
 
 
 import com.google.zxing.ChecksumException;
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
+import java.net.MalformedURLException;*/
 
-@RestController
+/*@RestController
 @RequestMapping( "/image")
 @CrossOrigin("*")
 public class Uploadcontroller {
@@ -59,4 +59,4 @@ public class Uploadcontroller {
 
 
 
-}
+/*}*/

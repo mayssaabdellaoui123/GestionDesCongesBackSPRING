@@ -68,11 +68,11 @@ public class User implements Serializable
 	private boolean enabled = true;
 	private boolean locked = false;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+/*	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	private Set<Subject> subject;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
-	private Set<Claim> claim;
+	private Set<Claim> claim;*/
 
 	public long getIdUser() {
 		return idUser;

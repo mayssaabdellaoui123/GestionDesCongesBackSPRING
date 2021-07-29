@@ -39,7 +39,7 @@ public class Admin extends User implements Serializable {
 		this.roleAdmin = roleAdmin;
 	}
 
-	@OneToOne
-	private Pool pool;
+	/*@OneToOne
+	private Pool pool;*/
 
 }
