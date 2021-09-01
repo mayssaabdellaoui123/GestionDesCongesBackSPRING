@@ -34,7 +34,7 @@ public class Client extends User implements Serializable {
 	public Client() {
 		super();
 	}
-	
+
 	private double Latitude;
 	private double Longitude;
 

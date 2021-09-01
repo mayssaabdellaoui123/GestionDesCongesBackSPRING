@@ -1,10 +1,14 @@
 package ConsomiTounsi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 
@@ -195,6 +199,22 @@ public class User implements Serializable
 		this.locked = locked;
 	}
 
+
+	@JsonIgnore
+	@OneToMany(mappedBy="users",
+			cascade = CascadeType.ALL)
+	private List<Conge> conge = new ArrayList<>();
+
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<JoursFeries> joursferies;
+
+	@JsonIgnore
+	@ManyToOne
+	private Departement departement;
+
+	@OneToOne
+	private Carriere carriere;
 
 
 }

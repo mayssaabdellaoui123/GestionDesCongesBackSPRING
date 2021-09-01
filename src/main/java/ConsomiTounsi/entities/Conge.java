@@ -27,7 +27,7 @@ public class Conge implements Serializable {
 
     @JsonIgnore
     @ManyToOne
-    private Employee employee;
+    private User users;
 
     @JsonIgnore
     @ManyToOne

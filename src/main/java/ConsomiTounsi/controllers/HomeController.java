@@ -119,8 +119,8 @@ public class HomeController {
 		if (u.isUpdatedPassword() == false)
 		{UserR.updateNbaccess(0 , jwtRequest.getUsername());}
 		// ANGULAR :  message = "it would be better to change the password to better secure your account";
-		as.resetAbsence(0);
-		ds.resetBonus();
+		//as.resetAbsence(0);
+		//ds.resetBonus();
 		final String token =
 				jwtUtility.generateToken(userDetails);
 		UserDetails userD = (UserDetails) auth.getPrincipal();

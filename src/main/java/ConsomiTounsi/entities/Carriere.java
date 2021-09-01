@@ -33,6 +33,6 @@ public class Carriere implements Serializable {
 
 
     @OneToOne(mappedBy="carriere")
-    private Employee employee;
+    private User users;
 
 }

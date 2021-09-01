@@ -29,5 +29,5 @@ public class JoursFeries implements Serializable {
 
     @JsonIgnore
     @ManyToMany(mappedBy="joursferies",cascade= CascadeType.PERSIST,fetch = FetchType.EAGER)
-    private List<Employee> employees;
+    private List<User> users;
 }

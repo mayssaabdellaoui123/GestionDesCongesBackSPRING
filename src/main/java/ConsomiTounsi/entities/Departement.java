@@ -27,5 +27,5 @@ public class Departement implements Serializable {
     @OneToMany(mappedBy="departement",
             cascade = CascadeType.ALL,
             fetch= FetchType.EAGER)
-    private List<Employee> employees = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 }

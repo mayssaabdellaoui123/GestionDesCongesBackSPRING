@@ -30,26 +30,26 @@ public class Employee implements Serializable {
     private int solde;
 
 
-    @JsonIgnore
+   /* @JsonIgnore
     @OneToMany(mappedBy="employee",
             cascade = CascadeType.ALL)
-    private List<Conge> conge = new ArrayList<>();
+    private List<Conge> conge = new ArrayList<>();*/
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<JoursFeries> joursferies;
+   // @ManyToMany(cascade = CascadeType.ALL)
+   // private List<JoursFeries> joursferies;
 
 
-    @JsonIgnore
+    /*@JsonIgnore
     @ManyToOne
-    private Departement departement;
+    private Departement departement;*/
 
-    @OneToOne
-    private Carriere carriere;
+   // @OneToOne
+   // private Carriere carriere;
 
-    @OneToOne
+    /*@OneToOne
     @JoinColumn(name="ACCOUNT_ID")
-    private User account;
+    private User account;*/
 
 
 }
