@@ -1,4 +1,4 @@
-package ConsomiTounsi.entities;
+ //package ConsomiTounsi.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+/*@Entity
 @Getter
 @Setter
 @AllArgsConstructor
@@ -52,4 +52,4 @@ public class Employee implements Serializable {
     private User account;*/
 
 
-}
+//}

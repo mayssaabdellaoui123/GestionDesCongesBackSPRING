@@ -38,6 +38,8 @@ public class Client extends User implements Serializable {
 	private double Latitude;
 	private double Longitude;
 
+	private String matricule;
+
 	private LocalDateTime subscriptionDate;
 	private String subMonth;
 
