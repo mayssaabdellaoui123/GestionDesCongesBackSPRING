@@ -1,4 +1,4 @@
-/*package ConsomiTounsi.Upload_shelf;
+package ConsomiTounsi.Upload_shelf;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -10,20 +10,20 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.net.MalformedURLException;
 @RestController
-@RequestMapping( "/imageshelf")
+@RequestMapping( "/image")
 @CrossOrigin("*")
 public class Uploadcontrollershelf {
 
     @Autowired
     UploadServiceshelf uploadService;
 
-    @PutMapping("/uploadshelf")
+    @PutMapping("/uploadclient")
     public ResponseEntity<?> uploadFil(@RequestParam MultipartFile file ) throws IOException {
         return uploadService.uploadFil(file);
     }
 
-    @PutMapping("/uploadevent")
+   /* @PutMapping("/uploadevent")
     public ResponseEntity<?> uploadFil2(@RequestParam MultipartFile file ) throws IOException {
         return uploadService.uploadFilEvent(file);
-    }
-}*/
+    }*/
+}

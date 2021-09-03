@@ -1,6 +1,8 @@
-/*package ConsomiTounsi.Upload_shelf;
+package ConsomiTounsi.Upload_shelf;
 
 
+import ConsomiTounsi.entities.Client;
+import ConsomiTounsi.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,22 +12,26 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Optional;*/
+import java.util.Optional;
 
-/*@Service
+@Service
 public class UploadServiceshelf {
 
-    @Autowired
+   /* @Autowired
     ShelfRepository productRepository;
     @Autowired
-    EventRepository eventRepository;
+    EventRepository eventRepository;*/
 
-    private String pathlocal = "C:\\Users\\mayessa\\Documents\\GitHub\\Front\\src\\assets\\images\\products\\";
+    @Autowired
+    ClientRepository productRepository;
+
+
+    private String pathlocal = "E:\\GitHub\\GestionDesConges-FrontAngular\\src\\assets\\images\\products\\";
     public ResponseEntity<?> uploadFil (MultipartFile file ) throws IOException {
-        Optional<Shelf> Shelf =  productRepository.findTopByOrderByIdShelfDesc() ;
+        Optional<Client> Shelf =  productRepository.findTopByOrderByIdUserDesc() ;
         if ( !Shelf.isPresent())
             throw new IllegalStateException("nope") ;
-        String filName = pathlocal+Shelf.get().getIdShelf()+".jpg";
+        String filName = pathlocal+Shelf.get().getIdUser()+".jpg";
         File convetedFile = new File( filName);
 
         convetedFile.createNewFile();
@@ -35,8 +41,8 @@ public class UploadServiceshelf {
         fout.write(file.getBytes()) ;
 
         fout.close();
-        Shelf p = Shelf.get();
-        String path="assets/images/products/"+p.getIdShelf()+".jpg";
+        Client p = Shelf.get();
+        String path="assets/images/products/"+p.getIdUser()+".jpg";
         System.out.println(path);
         p.setImage_URL(path);
         productRepository.save(p);
@@ -46,7 +52,7 @@ public class UploadServiceshelf {
     }
 
 
-    public ResponseEntity<?> uploadFilEvent (MultipartFile file ) throws IOException {
+ /*   public ResponseEntity<?> uploadFilEvent (MultipartFile file ) throws IOException {
         Optional<Event> Event =  eventRepository.findTopByOrderByIdEventDesc() ;
         if ( !Event.isPresent())
             throw new IllegalStateException("nope") ;
@@ -68,8 +74,8 @@ public class UploadServiceshelf {
 
         return new ResponseEntity<>(null, HttpStatus.OK);
 
-    }
+    }*/
 
 
 }
-*/
+
