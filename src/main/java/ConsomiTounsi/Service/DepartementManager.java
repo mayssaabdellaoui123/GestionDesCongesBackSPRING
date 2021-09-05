@@ -58,7 +58,16 @@ public class DepartementManager implements DepartementManagerInterface{
     }*/
 
 
+    @Override
+    public Departement updateDepartment(Departement dp) {
+        return dr.save(dp);
+    }
 
+
+    @Override
+    public void deleteDepartmentById(Long id) {
+        dr.deleteById(id);
+    }
 
 
 }

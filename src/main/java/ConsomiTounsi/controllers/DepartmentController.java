@@ -27,6 +27,7 @@ public class DepartmentController {
     ClientRepository cr ;
 
 
+
     @GetMapping("/getall")
     public List<Departement> retrieveAllDepartment(){
         return DepartmentI.retrieveAllDepartment();
@@ -45,4 +46,18 @@ public class DepartmentController {
         DepartmentI.addDepartment(D);
         return new ResponseEntity<>(new MessageResponseModel("Department registered successfully!"), HttpStatus.OK);
     }
+
+    @PutMapping("/update")
+    public ResponseEntity<Departement> updateDepartment(@RequestBody Departement department) {
+        Departement updateDepartment = DepartmentI.updateDepartment(department);
+        return new ResponseEntity<>(updateDepartment, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteDepartment(@PathVariable("id") Long id) {
+        DepartmentI.deleteDepartmentById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
 }
