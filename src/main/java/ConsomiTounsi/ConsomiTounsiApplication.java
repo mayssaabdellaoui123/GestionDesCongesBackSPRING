@@ -19,7 +19,7 @@ public class ConsomiTounsiApplication {
     public static void main(String[] args) {
         SpringApplication.run(ConsomiTounsiApplication.class, args);
     }
-    
+
     @Bean
     public Docket SwaggerConfiguration(){
         return new Docket (DocumentationType.SWAGGER_2)
