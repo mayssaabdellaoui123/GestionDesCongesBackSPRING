@@ -17,7 +17,7 @@ import java.util.Set;
 public class User implements Serializable
 {
 
-	public User(String firstNameUser, String lastNameUser, String usernameUser, String passwordUser, String phoneNumberUser, String emailAddressUser, Date dateBirthUser, String addressUser, UserRole roleUser) {
+	public User(String firstNameUser, String lastNameUser, String usernameUser, String passwordUser, String phoneNumberUser, String emailAddressUser, Date dateBirthUser, String addressUser, UserRole roleUser, String matricule ) {
 		this.firstNameUser = firstNameUser;
 		this.lastNameUser = lastNameUser;
 		this.usernameUser = usernameUser;
@@ -27,6 +27,7 @@ public class User implements Serializable
 		this.dateBirthUser = dateBirthUser;
 		this.addressUser = addressUser;
 		this.roleUser = roleUser;
+		this.matricule = matricule;
 	}
 	public User() {
 		super();
@@ -39,7 +40,7 @@ public class User implements Serializable
 	private long idUser;
 	
 	@Column(nullable=false , length=20)
-	private String firstNameUser; 
+	private String firstNameUser;
 	
 	@Column(nullable=false , length=20)
 	private String lastNameUser;
@@ -62,6 +63,16 @@ public class User implements Serializable
 
 	@Enumerated(EnumType.STRING)
 	private UserRole roleUser;
+
+	private  String matricule;
+
+	public void setMatricule(String matricule) {
+		this.matricule = matricule;
+	}
+
+	public String getMatricule() {
+		return matricule;
+	}
 
 	private boolean updatedPassword ;
 	private int nbaccessUser ;

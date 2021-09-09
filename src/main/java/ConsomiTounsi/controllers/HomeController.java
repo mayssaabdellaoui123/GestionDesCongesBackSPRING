@@ -99,6 +99,8 @@ public class HomeController {
 		cs.SignUpClient(user);
 		return new ResponseEntity<>(new MessageResponseModel("Client registered successfully!"), HttpStatus.OK);
 	}
+
+
 	@PostMapping("authenticate")
 	public ResponseEntity authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
 
