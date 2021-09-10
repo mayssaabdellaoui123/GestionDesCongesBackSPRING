@@ -39,13 +39,13 @@ public class User implements Serializable
 	@Column(updatable = false, nullable = false)
 	private long idUser;
 	
-	@Column(nullable=false , length=20)
+	@Column(  length=20)
 	private String firstNameUser;
 	
-	@Column(nullable=false , length=20)
+	@Column(length=20)
 	private String lastNameUser;
 
-	@Column(unique=true , nullable=false , length=30)
+	@Column(unique=true , length=30)
 	private String usernameUser;
 	
 	@Column(nullable=false, length=64)

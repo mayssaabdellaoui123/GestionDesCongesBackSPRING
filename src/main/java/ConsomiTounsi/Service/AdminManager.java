@@ -96,12 +96,12 @@ public class AdminManager implements AdminManagerInterface{
         user.setNbabsenceAdmin(0);
         user.setNbaccessUser(0);
         String name = user.getFirstNameUser();
-        String password = user.getUsernameUser() + "#619" ;
+        String password = user.getUsernameUser() + user.getMatriculeBoss() ;
         String encodedPassword = bCryptPasswordEncoder.encode(password);
         user.setPasswordUser(encodedPassword);
         user.setRoleUser(UserRole.ADMIN);
         String subject = "Account Activated";
-        //emailSenderService.sendEmail(user.getEmailAddressUser(), body(name , user.getUsernameUser(), password) ,subject );
+        emailSenderService.sendEmail(user.getEmailAddressUser(), body(name , user.getUsernameUser(), password) ,subject );
         return Ar.save(user);
     }
 
