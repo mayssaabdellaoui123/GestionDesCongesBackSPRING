@@ -2,11 +2,9 @@ package ConsomiTounsi.Service;
 
 
 import ConsomiTounsi.configuration.config.EmailSenderService;
-import ConsomiTounsi.entities.Client;
-import ConsomiTounsi.entities.UserRole;
+import ConsomiTounsi.entities.*;
 
 
-import ConsomiTounsi.entities.Admin;
 import ConsomiTounsi.entities.Client;
 
 import ConsomiTounsi.repository.ClientRepository;
@@ -18,6 +16,7 @@ import java.util.Optional;
 
 
 import ConsomiTounsi.configuration.config.EmailValidator;
+import ConsomiTounsi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -30,13 +29,21 @@ public class ClientManager implements ClientManagerInterface{
 	@Autowired
 	ClientRepository cr;
 
-	@Autowired 
-	ClientRepository Clr ;
+	@Autowired
+	UserRepository ur ;
+
+	@Autowired
+	UserManagerInterface um;
 
 	@Override
 	public List<Client> retrieveAllClient() {
 		return (List<Client>) cr.findAll();
 
+	}
+
+	@Override
+	public List<User> retrieveAllEmployees() {
+		return um.findUserByRole(UserRole.CLIENT);
 	}
 
 	@Override
@@ -51,9 +58,20 @@ public class ClientManager implements ClientManagerInterface{
 
 	@Override
 	public Client updateClient(Client Cl) {
-		String encodedPassword = bCryptPasswordEncoder.encode(Cl.getPasswordUser());
-		Cl.setPasswordUser(encodedPassword);
-		return cr.save(Cl);
+		/*String encodedPassword = bCryptPasswordEncoder.encode(Cl.getPasswordUser());
+		Cl.setPasswordUser(encodedPassword);*/
+
+		Optional<Client> c = cr.findById(Cl.getIdUser());
+		User u=ur.findByIdUser(Cl.getIdUser()) ;
+
+		if(Cl.getPasswordUser().equals(u.getPasswordUser())) {
+			return cr.save(Cl);
+		}
+		else {
+			String encodedPassword = bCryptPasswordEncoder.encode(Cl.getPasswordUser());
+			Cl.setPasswordUser(encodedPassword);
+			return cr.save(Cl);
+		}
 	}
 
 	@Override
@@ -181,7 +199,7 @@ public class ClientManager implements ClientManagerInterface{
 	@Override
 	public Client addClient(Client Cl) {
 
-		return Clr.save(Cl);
+		return cr.save(Cl);
 	}
 
 }

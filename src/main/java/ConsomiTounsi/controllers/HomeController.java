@@ -72,6 +72,10 @@ public class HomeController {
 		return new ResponseEntity<>(new MessageResponseModel("Username is already taken!"),
 				HttpStatus.BAD_REQUEST);
 	}
+		if (UserR.existsByMatricule(user.getMatricule())) {
+			return new ResponseEntity<>(new MessageResponseModel("Matricule is already taken!"),
+					HttpStatus.BAD_REQUEST);
+		}
 		if (UserR.existsByEmailAddressUser(user.getEmailAddressUser())) {
 		return new ResponseEntity<>(new MessageResponseModel("Email is already in use!"),
 				HttpStatus.BAD_REQUEST);
@@ -94,6 +98,10 @@ public class HomeController {
 		}
 		if (UserR.existsByEmailAddressUser(user.getEmailAddressUser())) {
 			return new ResponseEntity<>(new MessageResponseModel("Email is already in use!"),
+					HttpStatus.BAD_REQUEST);
+		}
+		if (UserR.existsByMatricule(user.getMatricule())) {
+			return new ResponseEntity<>(new MessageResponseModel("Matricule is already taken!"),
 					HttpStatus.BAD_REQUEST);
 		}
 		cs.SignUpClient(user);

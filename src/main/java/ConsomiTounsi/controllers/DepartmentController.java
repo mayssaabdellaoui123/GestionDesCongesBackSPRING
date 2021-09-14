@@ -47,11 +47,25 @@ public class DepartmentController {
         return new ResponseEntity<>(new MessageResponseModel("Department registered successfully!"), HttpStatus.OK);
     }
 
-    @PutMapping("/update")
+    /*@PutMapping("/update")
     public ResponseEntity<Departement> updateDepartment(@RequestBody Departement department) {
         Departement updateDepartment = DepartmentI.updateDepartment(department);
         return new ResponseEntity<>(updateDepartment, HttpStatus.OK);
+    }*/
+
+    @PutMapping("/update")
+    public ResponseEntity<?> updateDepartment(@RequestBody Departement department) {
+
+        if (!(cr.existsByMatricule(department.getMatriculeBoss()))) {
+            return new ResponseEntity<>(new MessageResponseModel("Matricule boss is not found"),
+                    HttpStatus.BAD_REQUEST);
+        }
+
+        DepartmentI.updateDepartment(department);
+        return new ResponseEntity<>(new MessageResponseModel("Department updated successfully!"),HttpStatus.OK);
+
     }
+
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteDepartment(@PathVariable("id") Long id) {

@@ -1,6 +1,7 @@
 package ConsomiTounsi.Service;
 
 import ConsomiTounsi.entities.Client;
+import ConsomiTounsi.entities.Role;
 import ConsomiTounsi.entities.User;
 import ConsomiTounsi.repository.UserRepository;
 
@@ -87,6 +88,11 @@ public class UserManager implements UserManagerInterface //, UserDetailsService 
 	@Override
 	public List<User> findUserByLastName(String lastname) {
 		return ur.findByLastNameUser(lastname);
+	}
+
+	@Override
+	public List<User> findUserByRole(UserRole role) {
+		return ur.findbyRole(role);
 	}
 
 	//registration

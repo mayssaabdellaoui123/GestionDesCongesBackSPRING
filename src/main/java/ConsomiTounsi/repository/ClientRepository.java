@@ -22,6 +22,8 @@ public interface ClientRepository extends CrudRepository<Client, Long> {
 	Optional<Client> findTopByOrderByIdUserDesc();
 
 
+
+
 	@Query("SELECT COUNT(c) FROM Client c")
 	long getNombreClient();
 

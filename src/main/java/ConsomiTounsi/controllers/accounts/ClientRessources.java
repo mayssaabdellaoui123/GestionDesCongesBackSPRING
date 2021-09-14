@@ -4,6 +4,7 @@ import ConsomiTounsi.Service.ClientManagerInterface;
 import ConsomiTounsi.entities.Admin;
 import ConsomiTounsi.entities.Client;
 import ConsomiTounsi.entities.User;
+import ConsomiTounsi.entities.UserRole;
 import ConsomiTounsi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,12 @@ public class ClientRessources {
     @GetMapping("/all")
     public ResponseEntity<List<Client>> getAllEmployees () {
         List<Client> employees = cs.retrieveAllClient();
+        return new ResponseEntity<>(employees, HttpStatus.OK);
+    }
+
+    @GetMapping("/allclients")
+    public ResponseEntity<List<User>> getAllClient () {
+        List<User> employees = ur.findbyRole(UserRole.CLIENT);
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 

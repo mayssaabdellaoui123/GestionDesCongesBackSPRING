@@ -80,6 +80,16 @@ public class User implements Serializable
 
 	private double salary;
 
+	private Long soldeDeConge;
+
+	public void setSoldeDeConge(Long soldeDeConge) {
+		this.soldeDeConge = soldeDeConge;
+	}
+
+	public Long getSoldeDeConge() {
+		return soldeDeConge;
+	}
+
 	private boolean enabled = true;
 	private boolean locked = false;
 
