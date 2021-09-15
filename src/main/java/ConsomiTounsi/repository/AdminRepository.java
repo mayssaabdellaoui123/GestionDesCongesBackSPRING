@@ -17,7 +17,9 @@ import ConsomiTounsi.entities.Role;
 @Repository
 public interface AdminRepository extends CrudRepository<Admin,Long>{
 	List<Admin> findByRoleAdmin(Role role);
-	
+
+	Admin findByUsernameUser(String name);
+
 	@Query("SELECT COUNT(a) FROM Admin a WHERE a.roleAdmin= :role" )
 	long getNbAdminByRole(@Param("role") Role role);
 	

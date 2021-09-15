@@ -2,18 +2,24 @@ package ConsomiTounsi.controllers;
 
 
 import ConsomiTounsi.Service.DepartementManagerInterface;
-import ConsomiTounsi.controllers.mouadh_controllers.MessageResponseModel;
-import ConsomiTounsi.entities.Client;
-import ConsomiTounsi.entities.Deliverer;
+import ConsomiTounsi.Service.UserManagerInterface;
+import ConsomiTounsi.controllers.simple_controllers.MessageResponseModel;
 import ConsomiTounsi.entities.Departement;
+import ConsomiTounsi.entities.Historique;
+import ConsomiTounsi.entities.User;
 import ConsomiTounsi.repository.ClientRepository;
+import ConsomiTounsi.repository.DepartementRepository;
+import ConsomiTounsi.repository.HistoriqueRepository;
+import ConsomiTounsi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +31,15 @@ public class DepartmentController {
     DepartementManagerInterface DepartmentI ;
     @Autowired
     ClientRepository cr ;
+    @Autowired
+    DepartementRepository dr ;
+
+    @Autowired
+    HistoriqueRepository hr ;
+
+    @Autowired
+    UserManagerInterface UMI ;
+
 
 
 
@@ -61,10 +76,38 @@ public class DepartmentController {
                     HttpStatus.BAD_REQUEST);
         }
 
+        Historique H = new Historique();
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        H.setDate(now);
+
+
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+
+        H.setOwner(username);
+
+        H.setAction("UPDATE DEPARTMENT");
+
+
+        Departement OldD = dr.findById(department.getIdDepartement()).get();
+
+
+        String Description = "nom de department : "+ OldD.getNomDepartement() +" => "+ department.getNomDepartement()+" // Matricule Boss : "+ OldD.getMatriculeBoss()+" => "+department.getMatriculeBoss() ;
+        H.setDescription(Description);
+
+
+        hr.save(H);
+
         DepartmentI.updateDepartment(department);
         return new ResponseEntity<>(new MessageResponseModel("Department updated successfully!"),HttpStatus.OK);
 
     }
+
+
+
 
 
     @DeleteMapping("/delete/{id}")

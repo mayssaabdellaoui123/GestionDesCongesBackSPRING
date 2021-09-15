@@ -1,10 +1,8 @@
 package ConsomiTounsi.controllers.accounts;
 
 import ConsomiTounsi.Service.ClientManagerInterface;
-import ConsomiTounsi.entities.Admin;
-import ConsomiTounsi.entities.Client;
-import ConsomiTounsi.entities.User;
-import ConsomiTounsi.entities.UserRole;
+import ConsomiTounsi.entities.*;
+import ConsomiTounsi.repository.AdminRepository;
 import ConsomiTounsi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +20,9 @@ public class ClientRessources {
 
     @Autowired
     UserRepository ur;
+
+    @Autowired
+    AdminRepository ar;
 
     @GetMapping("/all")
     public ResponseEntity<List<Client>> getAllEmployees () {
@@ -62,5 +63,15 @@ public class ClientRessources {
     public Client getByID(@PathVariable("username") String  username){
         User u = ur.findByUsernameUser(username).orElse(new User());
         return cs.FindClientById(u.getIdUser());}
+
+    @GetMapping("/getRolebyusername/{username}")
+    public Role getRoleByusername(@PathVariable("username") String  username){
+        Admin a = ar.findByUsernameUser(username);
+        Role r = a.getRoleAdmin();
+
+        return r;}
+
+
+
 
 }

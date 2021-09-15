@@ -9,28 +9,20 @@ import ConsomiTounsi.configuration.security.UserDetailsService;
 import ConsomiTounsi.configuration.token.JWTUtility;
 import ConsomiTounsi.configuration.token.JwtRequest;
 import ConsomiTounsi.configuration.token.JwtResponse;
-import ConsomiTounsi.controllers.mouadh_controllers.MessageResponseModel;
-import ConsomiTounsi.entities.Admin;
+import ConsomiTounsi.controllers.simple_controllers.MessageResponseModel;
 import ConsomiTounsi.entities.Client;
 import ConsomiTounsi.entities.User;
-import ConsomiTounsi.entities.UserRole;
 import ConsomiTounsi.repository.UserRepository;
-import com.sun.org.apache.xpath.internal.objects.XString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
-
-import java.util.HashSet;
-import java.util.Set;
 @CrossOrigin(origins = "*")
 @RestController
 public class HomeController {

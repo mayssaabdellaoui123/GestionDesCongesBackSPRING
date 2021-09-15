@@ -1,4 +1,4 @@
-package ConsomiTounsi.controllers.mouadh_controllers;
+package ConsomiTounsi.controllers.simple_controllers;
 
 public class MessageResponseModel {
 
