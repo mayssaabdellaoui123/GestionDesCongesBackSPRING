@@ -65,11 +65,26 @@ public class ClientRessources {
         return cs.FindClientById(u.getIdUser());}
 
     @GetMapping("/getRolebyusername/{username}")
-    public Role getRoleByusername(@PathVariable("username") String  username){
-        Admin a = ar.findByUsernameUser(username);
-        Role r = a.getRoleAdmin();
+    public String getRoleByusername(@PathVariable("username") String  username){
+        //User u = ur.findByUsernameUser(username);
+        //Role r = u.getr;
+
+        Long idu = ur.findByUsernameUser(username).get().getIdUser();
+        System.out.println(idu);
+        String r = ar.findRoleById(idu).toString();
 
         return r;}
+
+    @GetMapping("/getRolebyusernameid/{id}")
+    public String getRoleByusernameid(@PathVariable("id") Long  id){
+        //User u = ur.findByUsernameUser(username);
+        //Role r = u.getr;
+
+        String r = ar.findRoleById(id).toString();
+
+        return r;}
+
+
 
 
 

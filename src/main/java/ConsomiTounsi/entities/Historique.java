@@ -6,10 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -27,6 +24,16 @@ public class Historique implements Serializable {
     private LocalDateTime Date ;
     private String Owner ;
     private String Action ;
+    @Enumerated(EnumType.STRING)
+    private TypeHistorique Typehistorique;
+
+    public void setType(TypeHistorique type) {
+        this.Typehistorique = type;
+    }
+
+    public TypeHistorique getType() {
+        return Typehistorique;
+    }
 
     public void setAction(String action) {
         Action = action;

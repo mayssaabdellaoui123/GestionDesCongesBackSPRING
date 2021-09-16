@@ -6,6 +6,7 @@ import ConsomiTounsi.Service.UserManagerInterface;
 import ConsomiTounsi.controllers.simple_controllers.MessageResponseModel;
 import ConsomiTounsi.entities.Departement;
 import ConsomiTounsi.entities.Historique;
+import ConsomiTounsi.entities.TypeHistorique;
 import ConsomiTounsi.entities.User;
 import ConsomiTounsi.repository.ClientRepository;
 import ConsomiTounsi.repository.DepartementRepository;
@@ -89,13 +90,16 @@ public class DepartmentController {
 
         H.setOwner(username);
 
-        H.setAction("UPDATE DEPARTMENT");
+        H.setAction("DEPARTMENT");
+
+        TypeHistorique ex= null;
+        H.setType(ex.NOT_IMPORTANT);
 
 
         Departement OldD = dr.findById(department.getIdDepartement()).get();
 
 
-        String Description = "nom de department : "+ OldD.getNomDepartement() +" => "+ department.getNomDepartement()+" // Matricule Boss : "+ OldD.getMatriculeBoss()+" => "+department.getMatriculeBoss() ;
+        String Description = "UPDATE DEPARTMENT => nom de department : "+ OldD.getNomDepartement() +" => "+ department.getNomDepartement()+" // Matricule Boss : "+ OldD.getMatriculeBoss()+" => "+department.getMatriculeBoss() ;
         H.setDescription(Description);
 
 
