@@ -1,9 +1,12 @@
 package ConsomiTounsi.controllers.accounts;
 
 import ConsomiTounsi.Service.AdminManagerInterface;
+import ConsomiTounsi.controllers.simple_controllers.MessageResponseModel;
 import ConsomiTounsi.entities.Admin;
 import ConsomiTounsi.entities.Client;
+import ConsomiTounsi.entities.Role;
 import ConsomiTounsi.entities.User;
+import ConsomiTounsi.repository.DepartementRepository;
 import ConsomiTounsi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +24,8 @@ public class AdminRessources {
 
     @Autowired
     UserRepository ur;
+    @Autowired
+    DepartementRepository Dr;
 
     @GetMapping("/all")
     public ResponseEntity<List<Admin>> getAllEmployees () {
@@ -28,9 +33,22 @@ public class AdminRessources {
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
     @PostMapping("/add")
-    public ResponseEntity<Admin> addEmployee(@RequestBody Admin employee) {
+    public ResponseEntity addEmployee(@RequestBody Admin employee) {
+
+       /* if (!(Dr.existsByMatriculeBoss(employee.getMatriculeBoss()))) {
+            return new ResponseEntity<>(new MessageResponseModel("Matricule boss is not found"),
+                    HttpStatus.BAD_REQUEST);
+        }*/
+
+        if (employee.getRoleAdmin()== Role.DEPARTMENT_BOSS){
+            if (!(Dr.existsByMatriculeBoss(employee.getMatriculeBoss()))) {
+                return new ResponseEntity<>(new MessageResponseModel("Matricule boss is not found"),
+                        HttpStatus.BAD_REQUEST);
+            }
+        }
+
         Admin newEmployee = cs.AddAdmin(employee);
-        return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
+        return new ResponseEntity<>(new MessageResponseModel("Admin registered successfully!"), HttpStatus.OK);
     }
     @GetMapping("/find/{id}")
     public ResponseEntity<Admin> getEmployeeById (@PathVariable("id") Long id) {

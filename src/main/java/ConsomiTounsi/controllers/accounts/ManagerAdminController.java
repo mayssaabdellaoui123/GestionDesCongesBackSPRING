@@ -2,7 +2,11 @@ package ConsomiTounsi.controllers.accounts;
 
 import java.util.List;
 
+import ConsomiTounsi.controllers.simple_controllers.MessageResponseModel;
+import ConsomiTounsi.repository.DepartementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import ConsomiTounsi.Service.AdminManagerInterface;
@@ -14,11 +18,16 @@ import ConsomiTounsi.entities.Role;
 public class ManagerAdminController {
 	
 	@Autowired
-	AdminManagerInterface adminS; 
+	AdminManagerInterface adminS;
+
+
 
 	@PostMapping("/add")
-	public Admin register(@RequestBody Admin user){
-		return adminS.AddAdmin(user);
+	public ResponseEntity register(@RequestBody Admin user){
+
+
+		adminS.AddAdmin(user);
+		return new ResponseEntity<>(new MessageResponseModel("Admin registered successfully!"), HttpStatus.OK);
 	}
 
 	@GetMapping("/retrieve-all")

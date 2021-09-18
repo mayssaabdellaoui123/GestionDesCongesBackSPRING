@@ -1,11 +1,10 @@
 package ConsomiTounsi.Service;
 
 import ConsomiTounsi.configuration.config.EmailSenderService;
-import ConsomiTounsi.entities.Admin;
-import ConsomiTounsi.entities.Role;
-import ConsomiTounsi.entities.UserRole;
+import ConsomiTounsi.entities.*;
 import ConsomiTounsi.repository.AdminRepository;
 import ConsomiTounsi.configuration.config.EmailValidator;
+import ConsomiTounsi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,12 +14,16 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdminManager implements AdminManagerInterface{
 
 	@Autowired
     AdminRepository Ar;
+
+    @Autowired
+    UserRepository ur ;
 
     @Override
     public List<Admin>  retrieveAllAdmin() {
@@ -40,11 +43,27 @@ public class AdminManager implements AdminManagerInterface{
     @Transactional
     @Override
     public Admin updateAdmin(Admin A) {
-        if (!bCryptPasswordEncoder.matches(A.getUsernameUser() + "#619", A.getPasswordUser()))
-        {A.setUpdatedPassword(true); }
-        String encodedPassword = bCryptPasswordEncoder.encode(A.getPasswordUser());
-        A.setPasswordUser(encodedPassword);
-        return Ar.save(A);}
+       /*if (!bCryptPasswordEncoder.matches(A.getUsernameUser() + A.getMatricule() , A.getPasswordUser()))
+        {A.setUpdatedPassword(true); }*/
+       /* String encodedPassword = bCryptPasswordEncoder.encode(A.getPasswordUser());
+        A.setPasswordUser(encodedPassword);*/
+
+        Optional<Admin> c = Ar.findById(A.getIdUser());
+        User u=ur.findByIdUser(A.getIdUser()) ;
+
+        if(A.getPasswordUser().equals(u.getPasswordUser())) {
+            return Ar.save(A);
+        }
+        else {
+            if (!bCryptPasswordEncoder.matches(A.getUsernameUser() + A.getMatricule() , A.getPasswordUser()))
+            {A.setUpdatedPassword(true);
+            String encodedPassword = bCryptPasswordEncoder.encode(A.getPasswordUser());
+            A.setPasswordUser(encodedPassword);
+             }
+            return Ar.save(A);
+        }
+
+        }
 
     @Override
     public Admin FindAdminById(Long id) {
