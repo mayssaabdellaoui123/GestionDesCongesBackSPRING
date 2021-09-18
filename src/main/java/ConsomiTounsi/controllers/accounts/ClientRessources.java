@@ -1,9 +1,8 @@
 package ConsomiTounsi.controllers.accounts;
 
 import ConsomiTounsi.Service.ClientManagerInterface;
-import ConsomiTounsi.entities.Admin;
-import ConsomiTounsi.entities.Client;
-import ConsomiTounsi.entities.User;
+import ConsomiTounsi.entities.*;
+import ConsomiTounsi.repository.AdminRepository;
 import ConsomiTounsi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,9 +21,18 @@ public class ClientRessources {
     @Autowired
     UserRepository ur;
 
+    @Autowired
+    AdminRepository ar;
+
     @GetMapping("/all")
     public ResponseEntity<List<Client>> getAllEmployees () {
         List<Client> employees = cs.retrieveAllClient();
+        return new ResponseEntity<>(employees, HttpStatus.OK);
+    }
+
+    @GetMapping("/allclients")
+    public ResponseEntity<List<User>> getAllClient () {
+        List<User> employees = ur.findbyRole(UserRole.CLIENT);
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 
@@ -55,5 +63,30 @@ public class ClientRessources {
     public Client getByID(@PathVariable("username") String  username){
         User u = ur.findByUsernameUser(username).orElse(new User());
         return cs.FindClientById(u.getIdUser());}
+
+    @GetMapping("/getRolebyusername/{username}")
+    public String getRoleByusername(@PathVariable("username") String  username){
+        //User u = ur.findByUsernameUser(username);
+        //Role r = u.getr;
+
+        Long idu = ur.findByUsernameUser(username).get().getIdUser();
+        System.out.println(idu);
+        String r = ar.findRoleById(idu).toString();
+
+        return r;}
+
+    @GetMapping("/getRolebyusernameid/{id}")
+    public String getRoleByusernameid(@PathVariable("id") Long  id){
+        //User u = ur.findByUsernameUser(username);
+        //Role r = u.getr;
+
+        String r = ar.findRoleById(id).toString();
+
+        return r;}
+
+
+
+
+
 
 }

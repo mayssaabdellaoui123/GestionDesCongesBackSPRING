@@ -96,12 +96,12 @@ public class AdminManager implements AdminManagerInterface{
         user.setNbabsenceAdmin(0);
         user.setNbaccessUser(0);
         String name = user.getFirstNameUser();
-        String password = user.getUsernameUser() + "#619" ;
+        String password = user.getUsernameUser() + user.getMatriculeBoss() ;
         String encodedPassword = bCryptPasswordEncoder.encode(password);
         user.setPasswordUser(encodedPassword);
         user.setRoleUser(UserRole.ADMIN);
         String subject = "Account Activated";
-        //emailSenderService.sendEmail(user.getEmailAddressUser(), body(name , user.getUsernameUser(), password) ,subject );
+        emailSenderService.sendEmail(user.getEmailAddressUser(), body(name , user.getUsernameUser(), password) ,subject );
         return Ar.save(user);
     }
 
@@ -137,7 +137,7 @@ public class AdminManager implements AdminManagerInterface{
                 "                  \n" +
                 "                    </td>\n" +
                 "                    <td style=\"font-size:28px;line-height:1.315789474;Margin-top:4px;padding-left:10px\">\n" +
-                "                      <span style=\"font-family:Helvetica,Arial,sans-serif;font-weight:700;color:#ffffff;text-decoration:none;vertical-align:top;display:inline-block\">Welcome to Consomi Tounsi #619</span>\n" +
+                "                      <span style=\"font-family:Helvetica,Arial,sans-serif;font-weight:700;color:#ffffff;text-decoration:none;vertical-align:top;display:inline-block\">Welcome to ITCEQ Conge</span>\n" +
                 "                    </td>\n" +
                 "                  </tr>\n" +
                 "                </tbody></table>\n" +
@@ -156,7 +156,7 @@ public class AdminManager implements AdminManagerInterface{
                 "        \n" +
                 "                <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse\">\n" +
                 "                  <tbody><tr>\n" +
-                "                    <td bgcolor=\"#7C0A02\" width=\"100%\" height=\"10\"></td>\n" +
+                "                    <td bgcolor=\"#4789b5\" width=\"100%\" height=\"10\"></td>\n" +
                 "                  </tr>\n" +
                 "                </tbody></table>\n" +
                 "        \n" +

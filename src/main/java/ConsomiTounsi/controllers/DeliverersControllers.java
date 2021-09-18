@@ -50,7 +50,7 @@ public class DeliverersControllers {
 	public Deliverer addDeliverer(@RequestBody Deliverer D){
 		 
 		return DevlivererManI.addDeliverer(D) ;	}
-	
+
 	@GetMapping("/MaxScore")
 	public long getMaxOfScore() {
 		return DevlivererManI.FindMaxScore();

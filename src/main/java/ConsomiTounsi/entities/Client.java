@@ -38,7 +38,24 @@ public class Client extends User implements Serializable {
 	private double Latitude;
 	private double Longitude;
 
-	private String matricule;
+	//private String matricule;
+	private String Image_URL;
+
+	public void setImage_URL(String image_URL) {
+		Image_URL = image_URL;
+	}
+
+	public String getImage_URL() {
+		return Image_URL;
+	}
+
+	/*public void setMatricule(String matricule) {
+		this.matricule = matricule;
+	}*/
+
+/*	public String getMatricule() {
+		return matricule;
+	}*/
 
 	private LocalDateTime subscriptionDate;
 	private String subMonth;

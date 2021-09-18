@@ -11,11 +11,19 @@ import org.springframework.stereotype.Repository;
 import ConsomiTounsi.entities.Client;
 
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 @Repository
 public interface ClientRepository extends CrudRepository<Client, Long> {
-	
+
+	boolean existsByMatricule(String matricule);
+
+	Optional<Client> findTopByOrderByIdUserDesc();
+
+
+
+
 	@Query("SELECT COUNT(c) FROM Client c")
 	long getNombreClient();
 

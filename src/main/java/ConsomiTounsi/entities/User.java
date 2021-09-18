@@ -17,7 +17,7 @@ import java.util.Set;
 public class User implements Serializable
 {
 
-	public User(String firstNameUser, String lastNameUser, String usernameUser, String passwordUser, String phoneNumberUser, String emailAddressUser, Date dateBirthUser, String addressUser, UserRole roleUser) {
+	public User(String firstNameUser, String lastNameUser, String usernameUser, String passwordUser, String phoneNumberUser, String emailAddressUser, Date dateBirthUser, String addressUser, UserRole roleUser, String matricule ) {
 		this.firstNameUser = firstNameUser;
 		this.lastNameUser = lastNameUser;
 		this.usernameUser = usernameUser;
@@ -27,6 +27,7 @@ public class User implements Serializable
 		this.dateBirthUser = dateBirthUser;
 		this.addressUser = addressUser;
 		this.roleUser = roleUser;
+		this.matricule = matricule;
 	}
 	public User() {
 		super();
@@ -38,13 +39,13 @@ public class User implements Serializable
 	@Column(updatable = false, nullable = false)
 	private long idUser;
 	
-	@Column(nullable=false , length=20)
-	private String firstNameUser; 
+	@Column(  length=20)
+	private String firstNameUser;
 	
-	@Column(nullable=false , length=20)
+	@Column(length=20)
 	private String lastNameUser;
 
-	@Column(unique=true , nullable=false , length=30)
+	@Column(unique=true , length=30)
 	private String usernameUser;
 	
 	@Column(nullable=false, length=64)
@@ -63,11 +64,31 @@ public class User implements Serializable
 	@Enumerated(EnumType.STRING)
 	private UserRole roleUser;
 
+	private  String matricule;
+
+	public void setMatricule(String matricule) {
+		this.matricule = matricule;
+	}
+
+	public String getMatricule() {
+		return matricule;
+	}
+
 	private boolean updatedPassword ;
 	private int nbaccessUser ;
 
 
 	private double salary;
+
+	private Long soldeDeConge;
+
+	public void setSoldeDeConge(Long soldeDeConge) {
+		this.soldeDeConge = soldeDeConge;
+	}
+
+	public Long getSoldeDeConge() {
+		return soldeDeConge;
+	}
 
 	private boolean enabled = true;
 	private boolean locked = false;

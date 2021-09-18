@@ -1,6 +1,8 @@
 package ConsomiTounsi.Service;
 
+import ConsomiTounsi.entities.Role;
 import ConsomiTounsi.entities.User;
+import ConsomiTounsi.entities.UserRole;
 import org.springframework.security.core.Authentication;
 
 import java.util.List;
@@ -21,6 +23,7 @@ public interface UserManagerInterface {
 	List<User> findUserByLastNameAndFirstName(String firstname , String lastname);
 	List<User> findUserByFirstName(String firstname); 
 	List<User> findUserByLastName(String lastname);
+	List<User> findUserByRole(UserRole role);
 
     User SingUpManager(User user);
 	User getConnectedUser(Authentication auth);

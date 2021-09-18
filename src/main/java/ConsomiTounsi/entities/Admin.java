@@ -23,6 +23,16 @@ public class Admin extends User implements Serializable {
 
 	private int nbabsenceAdmin;
 
+	private String matriculeBoss ;
+
+	public void setMatriculeBoss(String matriculeBoss) {
+		this.matriculeBoss = matriculeBoss;
+	}
+
+	public String getMatriculeBoss() {
+		return matriculeBoss;
+	}
+
 	public int getNbabsenceAdmin() {
 		return nbabsenceAdmin;
 	}

@@ -21,7 +21,32 @@ public class Departement implements Serializable {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private long idDepartement;
     private String nomDepartement;
-    private long matriculeBoss;
+
+    public void setIdDepartement(long idDepartement) {
+        this.idDepartement = idDepartement;
+    }
+
+    public void setNomDepartement(String nomDepartement) {
+        this.nomDepartement = nomDepartement;
+    }
+
+    public void setMatriculeBoss(String matriculeBoss) {
+        this.matriculeBoss = matriculeBoss;
+    }
+
+    public long getIdDepartement() {
+        return idDepartement;
+    }
+
+    public String getNomDepartement() {
+        return nomDepartement;
+    }
+
+    public String getMatriculeBoss() {
+        return matriculeBoss;
+    }
+
+    private String matriculeBoss;
 
     @JsonIgnore
     @OneToMany(mappedBy="departement",
