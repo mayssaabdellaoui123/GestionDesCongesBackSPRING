@@ -61,6 +61,18 @@ public class User implements Serializable
 	
 	private String addressUser;
 
+	public void setDepartement(Departement departement) {
+		this.departement = departement;
+	}
+
+	public Departement getDepartement() {
+		return departement;
+	}
+
+	public Carriere getCarriere() {
+		return carriere;
+	}
+
 	@Enumerated(EnumType.STRING)
 	private UserRole roleUser;
 

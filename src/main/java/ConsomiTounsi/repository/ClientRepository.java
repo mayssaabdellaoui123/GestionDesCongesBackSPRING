@@ -30,6 +30,8 @@ public interface ClientRepository extends CrudRepository<Client, Long> {
 	@Query("SELECT Count(c) FROM Client c WHERE c.subMonth=:Month")
 	long getClientsbysubmonth(@Param("Month") String Month);
 
+	Client findByIdUser(long iduser);
+
 ;
 
 }

@@ -3,6 +3,7 @@ package ConsomiTounsi.controllers.accounts;
 import ConsomiTounsi.Service.ClientManagerInterface;
 import ConsomiTounsi.entities.*;
 import ConsomiTounsi.repository.AdminRepository;
+import ConsomiTounsi.repository.ClientRepository;
 import ConsomiTounsi.repository.HistoriqueRepository;
 import ConsomiTounsi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class ClientRessources {
     UserRepository ur;
 
     @Autowired
+    ClientRepository cr;
+    @Autowired
     AdminRepository ar;
 
     @Autowired
@@ -46,6 +49,33 @@ public class ClientRessources {
 
     @PostMapping("/add")
     public ResponseEntity<Client> addEmployee(@RequestBody Client employee) {
+
+
+        //Historique
+        Historique H = new Historique();
+
+        H.setAction("EMPLOYEE");
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        H.setDate(now);
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        H.setOwner(username);
+
+
+        TypeHistorique ex= null;
+        H.setType(ex.NOT_IMPORTANT);
+
+
+        String Description = "ADD EMPLOYEE => User Name : "+ employee.getUsernameUser()+" // Matricule : "+employee.getMatricule()+" // First Name : "+employee.getFirstNameUser()+" // Last Name : "+employee.getLastNameUser()+" // Email : "+employee.getEmailAddressUser()+" // Date Birth : "+employee.getDateBirthUser()+" // Phone : "+employee.getPhoneNumberUser()+" // Gender : "+employee.getGenderClient()+" // Workfield : "+employee.getWorkfieldClient() ;
+        H.setDescription(Description);
+
+        hr.save(H);
+        /////////////
+
+
         Client newEmployee = cs.addClient(employee);
         return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
     }
@@ -81,17 +111,44 @@ public class ClientRessources {
         String Description = "UPDATE EMPLOYEE => User Name  : "+ OldE.getUsernameUser() +" => "+ employee.getUsernameUser()+" // Matricule : "+ OldE.getMatricule()+" => "+employee.getMatricule()+" // First Name : "+ OldE.getFirstNameUser()+" => "+employee.getFirstNameUser()+" // Last Name : "+ OldE.getMatricule()+" => "+employee.getMatricule() ;
         H.setDescription(Description);*/
 
-        User OldE = ur.findById(employee.getIdUser()).get();
+        Client OldE = cr.findById(employee.getIdUser()).get();
         String Description = "UPDATE EMPLOYEE ::" ;
 
-        if(!OldE.getUsernameUser().equals(employee.getUsernameUser())){
-            Description=Description+" User Name : "+ OldE.getUsernameUser() +" => "+ employee.getUsernameUser()+ " //";
-        }
         if (!OldE.getMatricule().equals(employee.getMatricule())){
             Description=Description+" Matricule : "+ OldE.getMatricule()+" => "+employee.getMatricule()+ " //";
         }
+        /*if(!OldE.getSoldeDeConge().equals(employee.getSoldeDeConge())){
+            Description=Description+" Solde De Conge : "+ OldE.getSoldeDeConge() +" => "+ employee.getSoldeDeConge()+ " //";
+        }*/
+        if(!OldE.getUsernameUser().equals(employee.getUsernameUser())){
+            Description=Description+" User Name : "+ OldE.getUsernameUser() +" => "+ employee.getUsernameUser()+ " //";
+        }
+        if(!OldE.getFirstNameUser().equals(employee.getFirstNameUser())){
+            Description=Description+" First Name : "+ OldE.getFirstNameUser() +" => "+ employee.getFirstNameUser()+ " //";
+        }
+        if(!OldE.getLastNameUser().equals(employee.getLastNameUser())){
+            Description=Description+" Last Name : "+ OldE.getLastNameUser() +" => "+ employee.getLastNameUser()+ " //";
+        }
+        if(!OldE.getEmailAddressUser().equals(employee.getEmailAddressUser())){
+            Description=Description+" Email : "+ OldE.getEmailAddressUser() +" => "+ employee.getEmailAddressUser()+ " //";
+        }
+        if(!OldE.getDateBirthUser().equals(employee.getDateBirthUser())){
+            Description=Description+" Date Birth : "+ OldE.getDateBirthUser() +" => "+ employee.getDateBirthUser()+ " //";
+        }
+        if(!OldE.getPhoneNumberUser().equals(employee.getPhoneNumberUser())){
+            Description=Description+" Phone : "+ OldE.getPhoneNumberUser() +" => "+ employee.getPhoneNumberUser()+ " //";
+        }
+        /*if(!OldE.getDepartement().equals(employee.getDepartement())){
+            Description=Description+" Department : "+ OldE.getDepartement() +" => "+ employee.getDepartement()+ " //";
+        }*/
+        if(!OldE.getGenderClient().equals(employee.getGenderClient())){
+            Description=Description+" Gender : "+ OldE.getGenderClient() +" => "+ employee.getGenderClient()+ " //";
+        }
+        if(!OldE.getWorkfieldClient().equals(employee.getWorkfieldClient())){
+            Description=Description+" Workfield : "+ OldE.getWorkfieldClient() +" => "+ employee.getWorkfieldClient()+ " //";
+        }
 
-
+        H.setDescription(Description);
 
         hr.save(H);
         /////////////
