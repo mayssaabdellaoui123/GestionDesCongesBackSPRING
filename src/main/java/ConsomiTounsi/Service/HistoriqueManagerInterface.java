@@ -7,4 +7,5 @@ import java.util.List;
 public interface HistoriqueManagerInterface {
 
     public List<Historique> retrieveAllHistory();
+    public long getNombreHistorique();
 }

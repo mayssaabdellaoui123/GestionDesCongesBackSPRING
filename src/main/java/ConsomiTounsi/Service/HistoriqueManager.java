@@ -22,6 +22,11 @@ public class HistoriqueManager implements HistoriqueManagerInterface{
 
     }
 
+    @Override
+    public long getNombreHistorique() {
+        return HR.getNombreHistorique();
+    }
+
 
 
 }

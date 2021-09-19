@@ -26,5 +26,12 @@ public class HistoryController {
     }
 
 
+    @GetMapping("/getNombreHistorique")
+    public long getNombreHistorique(){
+        return Hm.getNombreHistorique();
+    }
+
+
+
 
 }
