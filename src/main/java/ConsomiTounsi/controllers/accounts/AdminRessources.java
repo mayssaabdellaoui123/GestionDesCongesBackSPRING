@@ -32,6 +32,8 @@ public class AdminRessources {
         List<Admin> employees = cs.retrieveAllAdmin();
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
+
+    //ajout ADMIN not EMPLOYEE
     @PostMapping("/add")
     public ResponseEntity addEmployee(@RequestBody Admin employee) {
 
