@@ -43,5 +43,9 @@ public class HistoriqueManager implements HistoriqueManagerInterface{
         return HR.RetiveHistoriqueByAction(action);
     }
 
+    @Override
+    public List<Historique> RetiveHistoriqueByFiltre(TypeHistorique type,String action) {
+        return HR.RetiveHistoriqueByFiltre(type,action);
+    }
 
 }

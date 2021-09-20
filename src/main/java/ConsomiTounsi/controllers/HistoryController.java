@@ -46,6 +46,11 @@ public class HistoryController {
         return Hm.RetiveHistoriqueByAction(action);
     }
 
+    @GetMapping("/RetiveHistoriqueByFiltre/{type}/{action}")
+    public List<Historique> RetiveHistoriqueByFiltre( @PathVariable("type")TypeHistorique type,@PathVariable("action") String action){
+        return Hm.RetiveHistoriqueByFiltre(type,action);
+    }
+
 
 
 

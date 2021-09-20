@@ -25,6 +25,9 @@ public interface HistoriqueRepository extends JpaRepository<Historique,Long> {
     @Query("SELECT h FROM Historique h WHERE h.action= :action " )
     List<Historique> RetiveHistoriqueByAction(@Param("action") String action);
 
+    @Query("SELECT h FROM Historique h WHERE h.typehistorique= :type  and h.action= :action" )
+    List<Historique> RetiveHistoriqueByFiltre(@Param("type") TypeHistorique type, @Param("action") String action);
+
 
 
 
