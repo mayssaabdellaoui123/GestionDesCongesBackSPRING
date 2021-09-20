@@ -164,7 +164,7 @@ public class DepartmentController {
 
 
         TypeHistorique ex= null;
-        H.setTypehistorique(ex.NOT_IMPORTANT);
+        H.setTypehistorique(ex.IMPORTANT);
 
         Departement department = dr.findById(id).get();
         String Description = "DELETE DEPARTMENT => nom de department : "+ department.getNomDepartement()+" // Matricule Boss : "+department.getMatriculeBoss() ;

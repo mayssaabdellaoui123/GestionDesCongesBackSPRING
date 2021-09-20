@@ -6,10 +6,7 @@ import ConsomiTounsi.entities.Departement;
 import ConsomiTounsi.entities.Historique;
 import ConsomiTounsi.entities.TypeHistorique;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,8 +24,8 @@ public class HistoryController {
     }
 
 
-    @GetMapping("/RetiveHistoriqueByType")
-    public List<Historique> RetiveHistoriqueByType(TypeHistorique type){
+    @GetMapping("/RetiveHistoriqueByType/{type}")
+    public List<Historique> RetiveHistoriqueByType(@PathVariable("type")TypeHistorique type){
         return Hm.RetiveHistoriqueByType(type);
     }
 
@@ -39,13 +36,13 @@ public class HistoryController {
 
 
 
-    @GetMapping("/RetiveHistoriqueByOwner")
-    public List<Historique> RetiveHistoriqueByOwner( String Username){
-        return Hm.RetiveHistoriqueByOwner(Username);
+    @GetMapping("/RetiveHistoriqueByOwner/{owner}")
+    public List<Historique> RetiveHistoriqueByOwner(@PathVariable("owner") String owner){
+        return Hm.RetiveHistoriqueByOwner(owner);
     }
 
-    @GetMapping("/RetiveHistoriqueByAction")
-    public List<Historique> RetiveHistoriqueByAction( String action){
+    @GetMapping("/RetiveHistoriqueByAction/{action}")
+    public List<Historique> RetiveHistoriqueByAction( @PathVariable("action") String action){
         return Hm.RetiveHistoriqueByAction(action);
     }
 
