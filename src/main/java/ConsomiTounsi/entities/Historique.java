@@ -18,31 +18,14 @@ import java.time.LocalDateTime;
 public class Historique implements Serializable {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idHistorique;
-    private String Description;
-    private LocalDateTime Date ;
-    private String Owner ;
-    private String Action ;
+    private String description;
+    private LocalDateTime date;
+    private String owner;
+    private String action;
     @Enumerated(EnumType.STRING)
-    private TypeHistorique Typehistorique;
-
-    public void setType(TypeHistorique type) {
-        this.Typehistorique = type;
-    }
-
-    public TypeHistorique getType() {
-        return Typehistorique;
-    }
-
-    public void setAction(String action) {
-        Action = action;
-    }
-
-    public String getAction() {
-        return Action;
-    }
-
+    private TypeHistorique typehistorique;
 
 
     public void setIdHistorique(long idHistorique) {
@@ -50,15 +33,23 @@ public class Historique implements Serializable {
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public void setDate(LocalDateTime date) {
-        Date = date;
+        this.date = date;
     }
 
     public void setOwner(String owner) {
-        Owner = owner;
+        this.owner = owner;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
+    public void setTypehistorique(TypeHistorique typehistorique) {
+        this.typehistorique = typehistorique;
     }
 
     public long getIdHistorique() {
@@ -66,14 +57,22 @@ public class Historique implements Serializable {
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public LocalDateTime getDate() {
-        return Date;
+        return date;
     }
 
     public String getOwner() {
-        return Owner;
+        return owner;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public TypeHistorique getTypehistorique() {
+        return typehistorique;
     }
 }

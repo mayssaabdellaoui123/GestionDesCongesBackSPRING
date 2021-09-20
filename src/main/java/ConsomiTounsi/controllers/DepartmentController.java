@@ -73,7 +73,7 @@ public class DepartmentController {
 
 
         TypeHistorique ex= null;
-        H.setType(ex.NOT_IMPORTANT);
+        H.setTypehistorique(ex.NOT_IMPORTANT);
 
         //Departement OldD = dr.findById(department.getIdDepartement()).get();
         String Description = "ADD DEPARTMENT => nom de department : "+ department.getNomDepartement()+" // Matricule Boss : "+department.getMatriculeBoss() ;
@@ -111,7 +111,7 @@ public class DepartmentController {
         H.setAction("DEPARTMENT");
 
         TypeHistorique ex= null;
-        H.setType(ex.NOT_IMPORTANT);
+        H.setTypehistorique(ex.NOT_IMPORTANT);
 
         /*Departement OldD = dr.findById(department.getIdDepartement()).get();
         String Description = "UPDATE DEPARTMENT => nom de department : "+ OldD.getNomDepartement() +" => "+ department.getNomDepartement()+" // Matricule Boss : "+ OldD.getMatriculeBoss()+" => "+department.getMatriculeBoss() ;
@@ -164,7 +164,7 @@ public class DepartmentController {
 
 
         TypeHistorique ex= null;
-        H.setType(ex.NOT_IMPORTANT);
+        H.setTypehistorique(ex.NOT_IMPORTANT);
 
         Departement department = dr.findById(id).get();
         String Description = "DELETE DEPARTMENT => nom de department : "+ department.getNomDepartement()+" // Matricule Boss : "+department.getMatriculeBoss() ;

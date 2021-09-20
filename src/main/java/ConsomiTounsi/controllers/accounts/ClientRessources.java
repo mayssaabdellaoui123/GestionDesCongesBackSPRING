@@ -66,7 +66,7 @@ public class ClientRessources {
 
 
         TypeHistorique ex= null;
-        H.setType(ex.NOT_IMPORTANT);
+        H.setTypehistorique(ex.NOT_IMPORTANT);
 
 
         String Description = "ADD EMPLOYEE => User Name : "+ employee.getUsernameUser()+" // Matricule : "+employee.getMatricule()+" // First Name : "+employee.getFirstNameUser()+" // Last Name : "+employee.getLastNameUser()+" // Email : "+employee.getEmailAddressUser()+" // Date Birth : "+employee.getDateBirthUser()+" // Phone : "+employee.getPhoneNumberUser()+" // Gender : "+employee.getGenderClient()+" // Workfield : "+employee.getWorkfieldClient() ;
@@ -104,7 +104,7 @@ public class ClientRessources {
 
 
         TypeHistorique ex= null;
-        H.setType(ex.NOT_IMPORTANT);
+        H.setTypehistorique(ex.NOT_IMPORTANT);
 
 
         /*User OldE = ur.findById(employee.getIdUser()).get();
@@ -175,7 +175,7 @@ public class ClientRessources {
 
 
         TypeHistorique ex= null;
-        H.setType(ex.NOT_IMPORTANT);
+        H.setTypehistorique(ex.NOT_IMPORTANT);
 
         User employee = ur.findById(id).get();
         String Description = "DELETE EMPLOYEE => User Name : "+ employee.getUsernameUser()+" // Matricule : "+employee.getMatricule() ;

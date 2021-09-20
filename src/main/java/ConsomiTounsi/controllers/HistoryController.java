@@ -4,6 +4,7 @@ import ConsomiTounsi.Service.DelivererManager;
 import ConsomiTounsi.Service.HistoriqueManagerInterface;
 import ConsomiTounsi.entities.Departement;
 import ConsomiTounsi.entities.Historique;
+import ConsomiTounsi.entities.TypeHistorique;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,10 +27,29 @@ public class HistoryController {
     }
 
 
+    @GetMapping("/RetiveHistoriqueByType")
+    public List<Historique> RetiveHistoriqueByType(TypeHistorique type){
+        return Hm.RetiveHistoriqueByType(type);
+    }
+
     @GetMapping("/getNombreHistorique")
     public long getNombreHistorique(){
-        return Hm.getNombreHistorique();
+        return  Hm.getNombreHistorique();
     }
+
+
+
+    @GetMapping("/RetiveHistoriqueByOwner")
+    public List<Historique> RetiveHistoriqueByOwner( String Username){
+        return Hm.RetiveHistoriqueByOwner(Username);
+    }
+
+    @GetMapping("/RetiveHistoriqueByAction")
+    public List<Historique> RetiveHistoriqueByAction( String action){
+        return Hm.RetiveHistoriqueByAction(action);
+    }
+
+
 
 
 
