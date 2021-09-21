@@ -58,13 +58,13 @@ public class DepartmentController {
     }
 
 
-    @GetMapping("/NameDbyMatricule/{matricule}")
-    public String getNameDepartmentByMatriculeBoss(@PathVariable("matricule") String matricule)
+    @GetMapping("/getNameDepartmentByMatriculeBoss/{matricule}")
+    public List<String> getNameDepartmentByMatriculeBoss(@PathVariable("matricule") String matricule)
     {
         return dm.getNameDepartmentByMatriculeBoss(matricule);
     }
 
-    @GetMapping("/MatriculeUser/{username}")
+    @GetMapping("/getNMatriculeByUsernameUser/{username}")
     public String getNMatriculeByUsernameUser(@PathVariable("username") String username)
     {
         return ur.getNMatriculeByUsernameUser(username);
