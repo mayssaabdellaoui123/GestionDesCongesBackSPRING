@@ -80,5 +80,10 @@ public class DepartementManager implements DepartementManagerInterface{
         dr.deleteById(id);
     }
 
+    public List<String> getNameDepartmentByMatriculeBoss(String MatriculeBoss){
+        return  dr.getNameDepartmentByMatriculeBoss(MatriculeBoss);
+
+    }
+
 
 }

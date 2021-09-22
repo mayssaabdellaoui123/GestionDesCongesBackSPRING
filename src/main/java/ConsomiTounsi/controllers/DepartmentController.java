@@ -1,7 +1,9 @@
 package ConsomiTounsi.controllers;
 
 
+import ConsomiTounsi.Service.DepartementManager;
 import ConsomiTounsi.Service.DepartementManagerInterface;
+import ConsomiTounsi.Service.UserManager;
 import ConsomiTounsi.Service.UserManagerInterface;
 import ConsomiTounsi.controllers.simple_controllers.MessageResponseModel;
 import ConsomiTounsi.entities.Departement;
@@ -36,10 +38,16 @@ public class DepartmentController {
     DepartementRepository dr ;
 
     @Autowired
+    DepartementManager dm ;
+
+    @Autowired
     HistoriqueRepository hr ;
 
     @Autowired
     UserManagerInterface UMI ;
+
+    @Autowired
+    UserManager ur;
 
 
 
@@ -47,6 +55,19 @@ public class DepartmentController {
     @GetMapping("/getall")
     public List<Departement> retrieveAllDepartment(){
         return DepartmentI.retrieveAllDepartment();
+    }
+
+
+    @GetMapping("/getNameDepartmentByMatriculeBoss/{matricule}")
+    public List<String> getNameDepartmentByMatriculeBoss(@PathVariable("matricule") String matricule)
+    {
+        return dm.getNameDepartmentByMatriculeBoss(matricule);
+    }
+
+    @GetMapping("/getNMatriculeByUsernameUser/{username}")
+    public String getNMatriculeByUsernameUser(@PathVariable("username") String username)
+    {
+        return ur.getNMatriculeByUsernameUser(username);
     }
 
     @PostMapping("/addDep")
