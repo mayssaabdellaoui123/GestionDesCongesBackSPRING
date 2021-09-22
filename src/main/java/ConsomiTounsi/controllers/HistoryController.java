@@ -8,6 +8,7 @@ import ConsomiTounsi.entities.TypeHistorique;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -20,13 +21,17 @@ public class HistoryController {
 
     @GetMapping("/getall")
     public List<Historique> getAllHistory(){
-        return Hm.retrieveAllHistory();
+        List<Historique> lh = Hm.retrieveAllHistory() ;
+        Collections.reverse(lh);
+        return lh;
     }
 
 
     @GetMapping("/RetiveHistoriqueByType/{type}")
     public List<Historique> RetiveHistoriqueByType(@PathVariable("type")TypeHistorique type){
-        return Hm.RetiveHistoriqueByType(type);
+        List<Historique> lh =Hm.RetiveHistoriqueByType(type);
+        Collections.reverse(lh);
+        return lh;
     }
 
     @GetMapping("/getNombreHistorique")
@@ -38,17 +43,23 @@ public class HistoryController {
 
     @GetMapping("/RetiveHistoriqueByOwner/{owner}")
     public List<Historique> RetiveHistoriqueByOwner(@PathVariable("owner") String owner){
-        return Hm.RetiveHistoriqueByOwner(owner);
+        List<Historique> lh =Hm.RetiveHistoriqueByOwner(owner);
+        Collections.reverse(lh);
+        return lh;
     }
 
     @GetMapping("/RetiveHistoriqueByAction/{action}")
     public List<Historique> RetiveHistoriqueByAction( @PathVariable("action") String action){
-        return Hm.RetiveHistoriqueByAction(action);
+        List<Historique> lh =Hm.RetiveHistoriqueByAction(action);
+        Collections.reverse(lh);
+        return lh ;
     }
 
     @GetMapping("/RetiveHistoriqueByFiltre/{type}/{action}")
     public List<Historique> RetiveHistoriqueByFiltre( @PathVariable("type")TypeHistorique type,@PathVariable("action") String action){
-        return Hm.RetiveHistoriqueByFiltre(type,action);
+        List<Historique> lh =Hm.RetiveHistoriqueByFiltre(type,action);
+        Collections.reverse(lh);
+        return lh;
     }
 
 

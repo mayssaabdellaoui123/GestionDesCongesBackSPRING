@@ -43,6 +43,7 @@ public class ClientManager implements ClientManagerInterface{
 
 	@Override
 	public List<User> retrieveAllEmployees() {
+
 		return um.findUserByRole(UserRole.CLIENT);
 	}
 

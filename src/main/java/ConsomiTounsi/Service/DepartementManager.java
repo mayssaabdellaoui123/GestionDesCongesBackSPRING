@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,9 +32,19 @@ public class DepartementManager implements DepartementManagerInterface{
         return (List<Departement>) dr.findAll();
     }*/
 
+    /*@Override
+    public List<Departement> retrieveAllDepartment() {
+
+        return (List<Departement>) dr.findAll();
+    }*/
+
+
     @Override
     public List<Departement> retrieveAllDepartment() {
-        return (List<Departement>) dr.findAll();
+
+        List<Departement> ld =dr.findAll() ;
+        Collections.reverse(ld);
+        return (ld) ;
     }
 
     @Override

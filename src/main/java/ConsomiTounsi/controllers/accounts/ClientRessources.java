@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.List;
 
 @RequestMapping("/ressources/client")
@@ -38,12 +39,14 @@ public class ClientRessources {
     @GetMapping("/all")
     public ResponseEntity<List<Client>> getAllEmployees () {
         List<Client> employees = cs.retrieveAllClient();
+
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 
     @GetMapping("/allclients")
     public ResponseEntity<List<User>> getAllClient () {
         List<User> employees = ur.findbyRole(UserRole.CLIENT);
+        Collections.reverse(employees);
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 
