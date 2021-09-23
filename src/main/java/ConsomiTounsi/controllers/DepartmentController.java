@@ -205,16 +205,16 @@ public class DepartmentController {
 
 
 
-    @PutMapping("/ClientToDepartment")
-    public void AffectClientToDepartment(@RequestParam("DepartId") long DepartId, @RequestParam("UsertId") long UsertId) {
-        dm.AffectProductAShelf(DepartId, UsertId);
+    @DeleteMapping("/AffectEmployeeDepartment/{DepartId}/{matricule}")
+    public void AffectEmployeeDepartment(@PathVariable("DepartId") long DepartId, @PathVariable("matricule") String matricule) {
+        dm.AffectEmployeeDepartment(DepartId, matricule);
     }
 
 
 
-    @PutMapping("/ClientFromDepartment")
-    public void DesaffectClientFromDepartmen(@RequestParam("DepartId") long DepartId, @RequestParam("UsertId") long UsertId) {
-        dm.desaffectProductAShelf(DepartId, UsertId);
+    @DeleteMapping("/DesaffectEmployeeDepartment/{DepartId}/{matricule}")
+    public void DesaffectEmployeeDepartment(@PathVariable("DepartId") long DepartId, @PathVariable("matricule") String matricule) {
+        dm.DesaffectEmployeeDepartment(DepartId, matricule);
     }
 
 

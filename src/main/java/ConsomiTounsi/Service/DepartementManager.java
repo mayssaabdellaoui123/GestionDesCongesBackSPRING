@@ -89,10 +89,11 @@ public class DepartementManager implements DepartementManagerInterface{
 
 
     @Transactional
-    public void AffectProductAShelf(long DepartId, long UsertId) {
+    public void AffectEmployeeDepartment(long DepartId, String matricule) {
 
         Departement DepartmentManagedEntity = dr.findById(DepartId).get();
-        User clientManagedEntity = ur.findById(UsertId).get();
+
+        User clientManagedEntity = ur.findUserByMatricule(matricule).get();
 
 
         if (ObjectUtils.isEmpty(DepartmentManagedEntity)== false && !ObjectUtils.isEmpty(clientManagedEntity) )
@@ -101,8 +102,8 @@ public class DepartementManager implements DepartementManagerInterface{
     }
 
 
-    public void desaffectProductAShelf(long DepartId, long UsertId) {
-        User u = ur.findById((long) UsertId).orElse(new User());
+    public void DesaffectEmployeeDepartment(long DepartId, String matricule) {
+        User u = ur.findUserByMatricule(matricule).orElse(new User());
         Departement d = dr.findById((long) DepartId).orElse(new Departement());
         u.setDepartement(null); ur.save(u);
         d.getUsers().remove(u); dr.save(d);
