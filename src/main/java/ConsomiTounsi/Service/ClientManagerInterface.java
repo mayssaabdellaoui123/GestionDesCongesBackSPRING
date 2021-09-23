@@ -11,6 +11,7 @@ public interface ClientManagerInterface {
     List<Client> retrieveAllClient();
     void deleteClientById(Long id);
     void deleteClientById(String id);
+
     Client updateClient(Client Cl);
     Client FindClientById(long id);
     Client FindClientById(String id);
@@ -19,5 +20,7 @@ public interface ClientManagerInterface {
     long getNBClientsbysubmonth(String Month);
     List<User> retrieveAllEmployees();
     Client addClient(Client Cl);
+    Client AffectationRemplaceur(String Matricule);
+    Client DesAffectationRemplaceur(String Matricule);
 
 }

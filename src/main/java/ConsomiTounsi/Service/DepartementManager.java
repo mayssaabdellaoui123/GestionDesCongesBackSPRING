@@ -8,7 +8,9 @@ import ConsomiTounsi.repository.DepartementRepository;
 import ConsomiTounsi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -83,6 +85,27 @@ public class DepartementManager implements DepartementManagerInterface{
     public List<String> getNameDepartmentByMatriculeBoss(String MatriculeBoss){
         return  dr.getNameDepartmentByMatriculeBoss(MatriculeBoss);
 
+    }
+
+
+    @Transactional
+    public void AffectProductAShelf(long DepartId, long UsertId) {
+
+        Departement DepartmentManagedEntity = dr.findById(DepartId).get();
+        User clientManagedEntity = ur.findById(UsertId).get();
+
+
+        if (ObjectUtils.isEmpty(DepartmentManagedEntity)== false && !ObjectUtils.isEmpty(clientManagedEntity) )
+        {clientManagedEntity.setDepartement(DepartmentManagedEntity);}
+
+    }
+
+
+    public void desaffectProductAShelf(long DepartId, long UsertId) {
+        User u = ur.findById((long) UsertId).orElse(new User());
+        Departement d = dr.findById((long) DepartId).orElse(new Departement());
+        u.setDepartement(null); ur.save(u);
+        d.getUsers().remove(u); dr.save(d);
     }
 
 

@@ -36,6 +36,24 @@ public class ClientManager implements ClientManagerInterface{
 	UserManagerInterface um;
 
 	@Override
+	public Client AffectationRemplaceur(String Matricule) {
+		Client c = cr.findClientByMatricule(Matricule);
+		c.setRemplaceur(Boolean.TRUE);
+		cr.save(c);
+		return(c);
+	}
+
+	@Override
+	public Client DesAffectationRemplaceur(String Matricule) {
+		Client c = cr.findClientByMatricule(Matricule);
+		c.setRemplaceur(Boolean.FALSE);
+		cr.save(c);
+		return(c);
+	}
+
+
+
+	@Override
 	public List<Client> retrieveAllClient() {
 		return (List<Client>) cr.findAll();
 

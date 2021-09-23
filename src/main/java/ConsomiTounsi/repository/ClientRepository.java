@@ -3,6 +3,8 @@ package ConsomiTounsi.repository;
 import javax.transaction.Transactional;
 
 import ConsomiTounsi.entities.Role;
+import ConsomiTounsi.entities.User;
+import ConsomiTounsi.entities.UserRole;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -22,6 +24,10 @@ public interface ClientRepository extends CrudRepository<Client, Long> {
 	Optional<Client> findTopByOrderByIdUserDesc();
 
 
+	//Optional<Client> findClientByMatricule(String Matricule);
+
+	@Query("SELECT c FROM Client c WHERE c.matricule = :m ")
+	Client findClientByMatricule(String m) ;
 
 
 	@Query("SELECT COUNT(c) FROM Client c")
@@ -31,6 +37,8 @@ public interface ClientRepository extends CrudRepository<Client, Long> {
 	long getClientsbysubmonth(@Param("Month") String Month);
 
 	Client findByIdUser(long iduser);
+
+
 
 ;
 

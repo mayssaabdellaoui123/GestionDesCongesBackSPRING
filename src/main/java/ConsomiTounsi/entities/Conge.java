@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -27,14 +28,110 @@ public class Conge implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date DateFin;
 
+    @Enumerated(EnumType.STRING)
+    private TypeConge type;
+    private LocalDateTime dateSaisie;
+
+    private String AvisPrimaire;
+    private String AvisFinale;
+
+    private boolean validationPrimaire = false;
+
+    public void setIdConge(long idConge) {
+        this.idConge = idConge;
+    }
+
+    public void setDateDebut(Date dateDebut) {
+        DateDebut = dateDebut;
+    }
+
+    public void setDateFin(Date dateFin) {
+        DateFin = dateFin;
+    }
+
+    public void setType(TypeConge type) {
+        this.type = type;
+    }
+
+    public void setDateSaisie(LocalDateTime dateSaisie) {
+        this.dateSaisie = dateSaisie;
+    }
+
+    public void setAvisPrimaire(String avisPrimaire) {
+        AvisPrimaire = avisPrimaire;
+    }
+
+    public void setAvisFinale(String avisFinale) {
+        AvisFinale = avisFinale;
+    }
+
+    public void setValidationPrimaire(boolean validationPrimaire) {
+        this.validationPrimaire = validationPrimaire;
+    }
+
+    public void setValidationFinale(boolean validationFinale) {
+        this.validationFinale = validationFinale;
+    }
+
+    public void setUsers(User users) {
+        this.users = users;
+    }
+
+    public void setTitreDeConge(TitreDeConge titreDeConge) {
+        this.titreDeConge = titreDeConge;
+    }
+
+    public long getIdConge() {
+        return idConge;
+    }
+
+    public Date getDateDebut() {
+        return DateDebut;
+    }
+
+    public Date getDateFin() {
+        return DateFin;
+    }
+
+    public TypeConge getType() {
+        return type;
+    }
+
+    public LocalDateTime getDateSaisie() {
+        return dateSaisie;
+    }
+
+    public String getAvisPrimaire() {
+        return AvisPrimaire;
+    }
+
+    public String getAvisFinale() {
+        return AvisFinale;
+    }
+
+    public boolean isValidationPrimaire() {
+        return validationPrimaire;
+    }
+
+    public boolean isValidationFinale() {
+        return validationFinale;
+    }
+
+    public User getUsers() {
+        return users;
+    }
+
+    public TitreDeConge getTitreDeConge() {
+        return titreDeConge;
+    }
+
+    private boolean validationFinale = false;
+
+
+
     @JsonIgnore
     @ManyToOne
     private User users;
-
-    @JsonIgnore
-    @ManyToOne
-    private TypeDeConge typeDeconge;
-
 
     @OneToOne
     private TitreDeConge titreDeConge;

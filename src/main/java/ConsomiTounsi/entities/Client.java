@@ -66,6 +66,16 @@ public class Client extends User implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private WorkField workfieldClient;
 
+	private Boolean Remplaceur = Boolean.FALSE;
+
+	public void setRemplaceur(Boolean remplaceur) {
+		Remplaceur = remplaceur;
+	}
+
+	public Boolean getRemplaceur() {
+		return Remplaceur;
+	}
+
 	public WorkField getWorkfieldClient() {
 		return workfieldClient;
 	}

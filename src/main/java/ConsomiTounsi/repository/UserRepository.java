@@ -29,7 +29,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
 	Optional<User>  findByUsernameUser(String username);
 
-
+	Optional<User> findUserByMatricule(String matricule);
 
 	List<User> findByFirstNameUser(String firstname);
 	List<User> findByLastNameUser(String lastname);

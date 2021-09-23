@@ -204,4 +204,18 @@ public class DepartmentController {
     }
 
 
+
+    @PutMapping("/ClientToDepartment")
+    public void AffectClientToDepartment(@RequestParam("DepartId") long DepartId, @RequestParam("UsertId") long UsertId) {
+        dm.AffectProductAShelf(DepartId, UsertId);
+    }
+
+
+
+    @PutMapping("/ClientFromDepartment")
+    public void DesaffectClientFromDepartmen(@RequestParam("DepartId") long DepartId, @RequestParam("UsertId") long UsertId) {
+        dm.desaffectProductAShelf(DepartId, UsertId);
+    }
+
+
 }

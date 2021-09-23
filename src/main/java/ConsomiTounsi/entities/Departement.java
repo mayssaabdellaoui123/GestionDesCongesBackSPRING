@@ -48,6 +48,24 @@ public class Departement implements Serializable {
 
     private String matriculeBoss;
 
+    private  String MatriculeRemplaceur;
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setMatriculeRemplaceur(String matriculeRemplaceur) {
+        MatriculeRemplaceur = matriculeRemplaceur;
+    }
+
+    public String getMatriculeRemplaceur() {
+        return MatriculeRemplaceur;
+    }
+
     @JsonIgnore
     @OneToMany(mappedBy="departement",
             cascade = CascadeType.ALL,

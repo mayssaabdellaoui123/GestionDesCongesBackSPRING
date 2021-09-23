@@ -217,6 +217,36 @@ public class ClientRessources {
 
 
 
+    @DeleteMapping("/AffectationRemplaceur/{matricule}")
+    public Client AffectationRemplaceur(@PathVariable("matricule") String  matricule) {
+        //User u = ur.findByUsernameUser(username);
+        //Role r = u.getr;
+
+
+
+        return cs.AffectationRemplaceur(matricule);
+    }
+
+    @DeleteMapping("/DesAffectationRemplaceur/{matricule}")
+    public Client DesAffectationRemplaceur(@PathVariable("matricule") String  matricule) {
+        //User u = ur.findByUsernameUser(username);
+        //Role r = u.getr;
+
+
+
+        return cs.DesAffectationRemplaceur(matricule);
+    }
+
+
+
+
+
+    @GetMapping("/getClientByMAtricule/{matricule}")
+    public Client getClientByMAtricule(@PathVariable("matricule") String matricule  ){
+
+
+
+        return cr.findClientByMatricule(matricule);}
 
 
 
