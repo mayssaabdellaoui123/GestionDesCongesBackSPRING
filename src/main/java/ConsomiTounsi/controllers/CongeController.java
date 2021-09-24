@@ -30,21 +30,6 @@ public class CongeController {
     CongeRepository cr ;
 
 
-    @PostMapping("/addCongeEtAffectation/{matricule}")
-    public ResponseEntity addCongeEtAffectation(@RequestBody Conge conge,@PathVariable("matricule") String matricule) {
-/*
-        Conge c = new Conge();
-        // other attributs
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        c.setDateSaisie(now);
-        */
-
-
-        CongeI.addCongeEtAffectation(conge,matricule);
-        return new ResponseEntity<>(new MessageResponseModel("Conge registered successfully!"), HttpStatus.OK);
-    }
-
 
         @PostMapping("/addConge")
     public ResponseEntity addConge(@RequestBody Conge conge) {
@@ -64,4 +49,10 @@ public class CongeController {
 
 
 
+    @PostMapping("/addCongeEtAffectation/{userName}")
+    public void addCongeEtAffectation(@RequestBody Conge conge,@PathVariable("userName") String userName) {
+
+         CongeI.addCongeEtAffectation(conge,userName);
+
+    }
 }

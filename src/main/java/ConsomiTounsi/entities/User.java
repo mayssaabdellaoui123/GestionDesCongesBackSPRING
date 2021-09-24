@@ -90,6 +90,8 @@ public class User implements Serializable
 		this.carriere = carriere;
 	}
 
+
+
 	public List<Conge> getConge() {
 		return conge;
 	}
@@ -255,7 +257,8 @@ public class User implements Serializable
 
 	@JsonIgnore
 	@OneToMany(mappedBy="users",
-			cascade = CascadeType.ALL)
+			cascade = CascadeType.ALL,
+			fetch= FetchType.EAGER)
 	private List<Conge> conge = new ArrayList<>();
 
 

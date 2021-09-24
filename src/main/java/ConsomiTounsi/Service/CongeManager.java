@@ -21,35 +21,39 @@ public class CongeManager implements CongeManagerInterface {
     @Autowired
     UserRepository ur ;
 
-    @Override
+    @Autowired
+    CongeManagerInterface CongeI ;
+
+    @Override// ajout conge avec date saisie
     public Conge addConge (Conge c){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        c.setDateSaisie(now);
+
         return cr.save(c);
     }
 
-    @Override
-    public void addCongeEtAffectation (Conge c, String matricule){
+   @Override
+    public void addCongeEtAffectation (Conge c, String username){
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         c.setDateSaisie(now);
 
+        String matricule = ur.findByUsernameUser(username).get().getMatricule();
 
+        CongeI.AffectEmployeConge(cr.save(c).getIdConge(),matricule) ;
 
-
-        cr.save(c);
     }
 
-
-    @Override
+    @Transactional
     public void AffectEmployeConge(long CongeId, String matricule) {
-
         Conge CongeManagedEntity = cr.findById(CongeId).get();
-
         User clientManagedEntity = ur.findUserByMatricule(matricule).get();
-
 
         if (ObjectUtils.isEmpty(CongeManagedEntity)== false && !ObjectUtils.isEmpty(clientManagedEntity) )
         {CongeManagedEntity.setUsers(clientManagedEntity);}
+
 
     }
 

@@ -35,6 +35,7 @@ public class Conge implements Serializable {
     private String AvisPrimaire;
     private String AvisFinale;
 
+
     private boolean validationPrimaire = false;
 
     public void setIdConge(long idConge) {
