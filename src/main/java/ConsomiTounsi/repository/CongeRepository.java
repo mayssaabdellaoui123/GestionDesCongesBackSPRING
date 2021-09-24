@@ -12,8 +12,7 @@ import java.util.List;
 @Repository
 public interface CongeRepository extends JpaRepository<Conge,Long> {
 
-    @Query("SELECT c FROM Conge c WHERE c.validationPrimaire= :fn AND u.validationFinale = :ln AND u.validationFinale = :ln" )
-    List<User> RetiveUserByFirstAndLastNameJPQL(@Param("fn") String fn , @Param("ln") String ln);
-
-
+    @Query(value = "SELECT * FROM conge c WHERE c.validation_primaire= :validation  AND c.users_id_user= :id " , nativeQuery =
+            true)
+    List<Conge> retrieveCongeNonValidéByDepartment(@Param("validation") Boolean validation , @Param("id") long id);
 }

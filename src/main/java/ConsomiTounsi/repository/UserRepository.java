@@ -1,5 +1,6 @@
 package ConsomiTounsi.repository;
 
+import ConsomiTounsi.entities.Conge;
 import ConsomiTounsi.entities.Role;
 import ConsomiTounsi.entities.User;
 
@@ -52,6 +53,14 @@ public interface UserRepository extends JpaRepository<User,Long> {
 	@Query("SELECT u.matricule FROM User u WHERE u.usernameUser= :usernameUser")
 	String retrieveMatriculeClientByUsername(@Param("usernameUser") String usernameUser);
 
+
+	/*@Query(value = "SELECT * FROM user u WHERE u.departement_id_departement= :id " , nativeQuery =
+			true)
+	List<User> retrieveUsersByDepartment( @Param("id") long id);*/
+
+
+	@Query(value="select * from user where departement_id_departement=?1", nativeQuery = true)
+	List<User> retrieveUsersByDepartment(long id);
 
 	
 	

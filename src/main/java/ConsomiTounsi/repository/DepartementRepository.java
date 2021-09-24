@@ -17,7 +17,7 @@ public interface DepartementRepository extends JpaRepository<Departement,Long> {
     List<String> getNameDepartmentByMatriculeBoss(@Param("matriculeBoss") String matriculeBoss);
 
     @Query("SELECT d.idDepartement FROM Departement d WHERE d.matriculeBoss=:matriculeBoss")
-    List<Long> getIdDepartmentByMatriculeBoss(@Param("matriculeBoss") String matriculeBoss);
+    Long getIdDepartmentByMatriculeBoss(@Param("matriculeBoss") String matriculeBoss);
 
 
 

@@ -1,10 +1,12 @@
 package ConsomiTounsi.controllers;
 
+import ConsomiTounsi.Service.CongeManager;
 import ConsomiTounsi.Service.DelivererManager;
 import ConsomiTounsi.Service.HistoriqueManagerInterface;
 import ConsomiTounsi.entities.Departement;
 import ConsomiTounsi.entities.Historique;
 import ConsomiTounsi.entities.TypeHistorique;
+import ConsomiTounsi.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,9 @@ public class HistoryController {
 
     @Autowired
     HistoriqueManagerInterface Hm;
+
+    @Autowired
+    CongeManager Cm;
 
     @GetMapping("/getall")
     public List<Historique> getAllHistory(){
@@ -61,6 +66,15 @@ public class HistoryController {
         Collections.reverse(lh);
         return lh;
     }
+
+
+
+    @GetMapping("/getCongeChefDepartment/{username}")
+    public List<User> getCongeChefDepartment(@PathVariable("username") String username){
+
+        return Cm.getCongeChefDepartment(username);
+    }
+
 
 
 

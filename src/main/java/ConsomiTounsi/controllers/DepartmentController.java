@@ -79,6 +79,11 @@ public class DepartmentController {
                         HttpStatus.BAD_REQUEST);
             }
 
+        if ((dr.existsByMatriculeBoss(department.getMatriculeBoss()))) {
+            return new ResponseEntity<>(new MessageResponseModel("this boss already has a department"),
+                    HttpStatus.BAD_REQUEST);
+        }
+
             //Historique
         Historique H = new Historique();
 
