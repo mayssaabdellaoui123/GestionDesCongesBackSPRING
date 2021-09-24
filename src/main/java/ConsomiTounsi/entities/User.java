@@ -78,6 +78,26 @@ public class User implements Serializable
 
 	private  String matricule;
 
+	public void setConge(List<Conge> conge) {
+		this.conge = conge;
+	}
+
+	public void setJoursferies(List<JoursFeries> joursferies) {
+		this.joursferies = joursferies;
+	}
+
+	public void setCarriere(Carriere carriere) {
+		this.carriere = carriere;
+	}
+
+	public List<Conge> getConge() {
+		return conge;
+	}
+
+	public List<JoursFeries> getJoursferies() {
+		return joursferies;
+	}
+
 	public void setMatricule(String matricule) {
 		this.matricule = matricule;
 	}
