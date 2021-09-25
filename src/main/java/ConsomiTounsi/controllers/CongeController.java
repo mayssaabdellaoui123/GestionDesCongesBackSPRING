@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @RestController
 @RequestMapping("/Conge")
@@ -55,4 +56,25 @@ public class CongeController {
          CongeI.addCongeEtAffectation(conge,userName);
 
     }
+
+    @GetMapping("/getiddep/{userName}")
+    public List<Conge> getiddep(@PathVariable("userName") String userName) {
+
+        return CongeI.getiddep(userName);
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

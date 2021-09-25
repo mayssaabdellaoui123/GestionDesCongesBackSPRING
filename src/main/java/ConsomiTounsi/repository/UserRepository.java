@@ -53,6 +53,9 @@ public interface UserRepository extends JpaRepository<User,Long> {
 	String retrieveMatriculeClientByUsername(@Param("usernameUser") String usernameUser);
 
 
+	@Query(value= " SELECT * , 0 AS clazz_ FROM user u WHERE u.departement_id_departement= :depId", nativeQuery = true)
+	List<User>  getUserByIdDep( @Param("depId") Long depId ) ;
+
 	
 	
 }

@@ -4,6 +4,7 @@ import ConsomiTounsi.entities.Conge;
 import ConsomiTounsi.entities.Departement;
 import ConsomiTounsi.entities.User;
 import ConsomiTounsi.repository.CongeRepository;
+import ConsomiTounsi.repository.DepartementRepository;
 import ConsomiTounsi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,12 @@ import org.springframework.util.ObjectUtils;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 @Service
 
 public class CongeManager implements CongeManagerInterface {
@@ -20,6 +27,9 @@ public class CongeManager implements CongeManagerInterface {
     CongeRepository cr ;
     @Autowired
     UserRepository ur ;
+
+    @Autowired
+    DepartementRepository dr ;
 
     @Autowired
     CongeManagerInterface CongeI ;
@@ -46,6 +56,9 @@ public class CongeManager implements CongeManagerInterface {
 
     }
 
+
+
+
     @Transactional
     public void AffectEmployeConge(long CongeId, String matricule) {
         Conge CongeManagedEntity = cr.findById(CongeId).get();
@@ -57,4 +70,21 @@ public class CongeManager implements CongeManagerInterface {
 
     }
 
+    @Override
+    public List<Conge> getiddep (String username){
+        User u = ur.findByUsernameUser(username).get();
+        List<Long> IdDep = dr.getIdDepartmentByMatriculeBoss(u.getMatricule());
+
+        List<User> usersDep = new ArrayList<>();
+
+        for(Long id: IdDep){
+            usersDep.addAll(ur.getUserByIdDep(id));
+        }
+
+        List<Conge> conges = new ArrayList<>();
+        for(User userDep:usersDep){
+            conges.addAll(cr.getCongeByUserIdUserAndVF(userDep.getIdUser(),Boolean.FALSE));
+        }
+        return conges ;
+    }
 }

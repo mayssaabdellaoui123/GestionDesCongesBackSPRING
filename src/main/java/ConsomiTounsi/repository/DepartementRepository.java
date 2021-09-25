@@ -16,6 +16,13 @@ public interface DepartementRepository extends JpaRepository<Departement,Long> {
     @Query("SELECT d.nomDepartement FROM Departement d WHERE d.matriculeBoss=:matriculeBoss")
     List<String> getNameDepartmentByMatriculeBoss(@Param("matriculeBoss") String matriculeBoss);
 
+    @Query("SELECT d.idDepartement FROM Departement d WHERE d.matriculeBoss=:matriculeBoss")
+    List<Long> getIdDepartmentByMatriculeBoss(@Param("matriculeBoss") String matriculeBoss);
+
+    @Query("SELECT d FROM Departement d WHERE d.matriculeBoss=:matriculeBoss")
+    List<Departement> getDepartmentByMatriculeBoss(@Param("matriculeBoss") String matriculeBoss);
+
+
 
 
 }
