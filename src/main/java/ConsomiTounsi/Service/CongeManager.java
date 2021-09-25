@@ -3,6 +3,11 @@ package ConsomiTounsi.Service;
 import ConsomiTounsi.configuration.security.UserDetails;
 import ConsomiTounsi.entities.*;
 import ConsomiTounsi.repository.*;
+import ConsomiTounsi.entities.*;
+import ConsomiTounsi.repository.AdminRepository;
+import ConsomiTounsi.repository.CongeRepository;
+import ConsomiTounsi.repository.DepartementRepository;
+import ConsomiTounsi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -10,10 +15,8 @@ import org.springframework.util.ObjectUtils;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 @Service
@@ -42,6 +45,17 @@ public class CongeManager implements CongeManagerInterface {
         c.setDateSaisie(now);
 
         return cr.save(c);
+    }
+
+    @Override
+    public Boolean deleteConge(Long idConge) {
+        Boolean res = Boolean.FALSE;
+        Conge c = cr.getByIdConge(idConge);
+        if(!c.isValidationFinale()){
+            cr.deleteById(idConge);
+            res = Boolean.TRUE;
+        }
+        return res;
     }
 
    @Override
@@ -90,14 +104,39 @@ public class CongeManager implements CongeManagerInterface {
     }
 
     @Override
+    public List<Conge> GetCongesForDirecGen(){
+
+        List<Admin> admins = ar.findByRoleAdmin(Role.DEPARTMENT_BOSS);
+        System.out.println("admins : "+admins);
+
+        List<Long> ids = new ArrayList<>();
+        for(Admin admin:admins){
+            ids.addAll(ur.getIdUserByMatricule(admin.getMatriculeBoss()));
+        }
+
+        List<Conge> conges = new ArrayList<>();
+        for(Long id:ids){
+            conges.addAll(cr.getCongeByUserIdUser(id));
+        }
+        return conges ;
+    }
+
+    @Override
+    public List<Conge> GetCongesForSA(){
+
+        List<Conge> conges =cr.GetCongesForSA(Boolean.TRUE);
+
+        System.out.println("conges : "+conges);
+        return conges ;
+    }
+
+    @Override
     public List<Conge> GetCongesForEmp (String username){
         User u = ur.findByUsernameUser(username).get();
         List<Conge> conges =cr.getCongeByUserIdUser(u.getIdUser());
 
         return conges ;
     }
-
-
 
     @Override
     public void ValidationPrimaireChefDep (Long CongeId, String username){

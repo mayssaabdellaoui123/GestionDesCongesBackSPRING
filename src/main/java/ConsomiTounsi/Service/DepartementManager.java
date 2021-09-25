@@ -2,19 +2,27 @@ package ConsomiTounsi.Service;
 
 import ConsomiTounsi.entities.Client;
 import ConsomiTounsi.entities.Departement;
+import ConsomiTounsi.entities.Historique;
 import ConsomiTounsi.entities.User;
 import ConsomiTounsi.repository.ClientRepository;
 import ConsomiTounsi.repository.DepartementRepository;
+import ConsomiTounsi.repository.HistoriqueRepository;
 import ConsomiTounsi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.security.core.context.SecurityContextHolder;
+import ConsomiTounsi.entities.TypeHistorique;
+
 
 @Service
 
@@ -29,16 +37,11 @@ public class DepartementManager implements DepartementManagerInterface{
     @Autowired
     ClientRepository cr;
 
-    /*@Override
-    public List<Departement> retrieveAllDepartment() {
-        return (List<Departement>) dr.findAll();
-    }*/
+    @Autowired
+    HistoriqueRepository hr ;
 
-    /*@Override
-    public List<Departement> retrieveAllDepartment() {
-
-        return (List<Departement>) dr.findAll();
-    }*/
+    @Autowired
+    HistoriqueManagerInterface hi ;
 
 
     @Override
@@ -50,35 +53,56 @@ public class DepartementManager implements DepartementManagerInterface{
     }
 
     @Override
-    public Departement addDepartment ( Departement dp){
-        return dr.save(dp);
+    public Departement addDepartment ( Departement department){
+
+        //History
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+
+        String Description = "ADD DEPARTMENT => nom de department : "+ department.getNomDepartement()+" // Matricule Boss : "+department.getMatriculeBoss() ;
+
+        hi.AddHistory("DEPARTMENT",username,TypeHistorique.NOT_IMPORTANT,Description);
+        ////////
+
+        return dr.save(department);
     }
 
-   /* public Optional<String> retrieveNameBossDepartmentByMatricule () {
-        List<Departement> Ld = dr.findAll() ;
-        List<Client> Lc = (List<Client>) cr.findAll();
-        Optional<String> R ;
-
-        for ( Departement dep: Ld){
-            for ( Client client : Lc) {
-
-                if()
-
-            }
-        }
-
-
-    }*/
 
 
     @Override
     public Departement updateDepartment(Departement dp) {
+        //History
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+
+        Departement OldD = dr.findById(dp.getIdDepartement()).get();
+        String Description = "UPDATE DEPARTMENT ::" ;
+        if(!OldD.getNomDepartement().equals(dp.getNomDepartement())){
+            Description=Description+" nom de department : "+ OldD.getNomDepartement() +" => "+ dp.getNomDepartement()+ " //";
+        }
+        if (!OldD.getMatriculeBoss().equals(dp.getMatriculeBoss())){
+            Description=Description+" Matricule Boss : "+ OldD.getMatriculeBoss()+" => "+dp.getMatriculeBoss();
+        }
+
+        hi.AddHistory("DEPARTMENT",username,TypeHistorique.NOT_IMPORTANT,Description);
+        ////////
         return dr.save(dp);
     }
 
 
     @Override
     public void deleteDepartmentById(Long id) {
+
+        //History
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+
+        Departement department = dr.findById(id).get();
+        String Description = "DELETE DEPARTMENT => nom de department : "+ department.getNomDepartement()+" // Matricule Boss : "+department.getMatriculeBoss() ;
+
+        hi.AddHistory("DEPARTMENT",username,TypeHistorique.IMPORTANT,Description);
+        ////////
+
         dr.deleteById(id);
     }
 

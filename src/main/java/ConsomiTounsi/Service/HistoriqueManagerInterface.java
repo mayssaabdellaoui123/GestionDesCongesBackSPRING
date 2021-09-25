@@ -14,4 +14,6 @@ public interface HistoriqueManagerInterface {
     public List<Historique> RetiveHistoriqueByAction(String action);
 
     public List<Historique> RetiveHistoriqueByFiltre(TypeHistorique type, String action);
+
+    void AddHistory(String action,String username, TypeHistorique typeHistorique, String Description );
 }

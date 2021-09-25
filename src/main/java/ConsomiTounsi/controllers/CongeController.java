@@ -30,13 +30,21 @@ public class CongeController {
 
 
 
+    @PostMapping("/addConge")
 
-        @PostMapping("/addConge")
     public ResponseEntity addConge(@RequestBody Conge conge) {
 
         CongeI.addConge(conge);
         return new ResponseEntity<>(new MessageResponseModel("Conge registered successfully!"), HttpStatus.OK);
 
+    }
+
+    @DeleteMapping("/deleteConge/{idConge}")
+    public ResponseEntity deleteConge(@PathVariable("idConge") Long idConge) {
+        if(CongeI.deleteConge(idConge)){
+            return new ResponseEntity<>(new MessageResponseModel("Conge deleted successfully!"), HttpStatus.OK);
+        }
+        else return new ResponseEntity<>(new MessageResponseModel("Conge CANNOT be deleted!"), HttpStatus.OK);
     }
 
     @PostMapping("/AffectEmployeConge/{idConge}/{matricule}")
@@ -66,6 +74,15 @@ public class CongeController {
         return CongeI.GetCongesForEmp(userName);
     }
 
+    @GetMapping("/GetCongesForSA/")
+    public List<Conge> GetCongesForSA() {
+        return CongeI.GetCongesForSA();
+    }
+
+    @GetMapping("/GetCongesForDirecGen/")
+    public List<Conge> GetCongesForDirecGen() {
+        return CongeI.GetCongesForDirecGen();
+    }
 
     @PostMapping("/ValidationPrimaireChefDep/{CongeId}/{username}")
     public void ValidationPrimaireChefDep(@PathVariable("CongeId") Long CongeId,@PathVariable("username") String username) {
@@ -100,6 +117,8 @@ public class CongeController {
     public DetailsUserConge getDetailsUserByIdConge(@PathVariable("idConge") Long idConge) {
              return CongeI.getDetailsUserByIdConge(idConge);
     }
+
+
 
 
 

@@ -16,10 +16,13 @@ import ConsomiTounsi.entities.Role;
 @Transactional
 @Repository
 public interface AdminRepository extends CrudRepository<Admin,Long>{
-	List<Admin> findByRoleAdmin(Role role);
+
+	List<Admin> findByRoleAdmin(Role roleAdmin);
 
 	@Query("SELECT roleAdmin FROM Admin a WHERE a.idUser = :id ")
 	Role findRoleById(@Param("id") Long id);
+
+
 
 	Admin findByMatriculeBoss(String matricule);
 

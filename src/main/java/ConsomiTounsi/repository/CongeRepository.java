@@ -21,8 +21,15 @@ public interface CongeRepository extends JpaRepository<Conge,Long> {
     @Query(value= " SELECT * , 0 AS clazz_ FROM conge c WHERE c.users_id_user= :userId", nativeQuery = true)
     List<Conge> getCongeByUserIdUser(@Param("userId") Long userId ) ;
 
+
     @Query(value= " SELECT users_id_user , 0 AS clazz_ FROM conge c WHERE c.id_conge= :idConge", nativeQuery = true)
       Long getIdUserByIdConge(@Param("idConge") Long idConge ) ;
+
+    @Query("SELECT c FROM Conge c WHERE c.validationPrimaire = :validationPrimaire ")
+    List<Conge> GetCongesForSA(@Param("validationPrimaire") Boolean validationPrimaire);
+
+    Conge getByIdConge(Long idConge);
+
 
 
 }
