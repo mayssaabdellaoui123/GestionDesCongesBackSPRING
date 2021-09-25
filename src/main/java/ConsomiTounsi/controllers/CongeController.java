@@ -3,10 +3,7 @@ package ConsomiTounsi.controllers;
 
 import ConsomiTounsi.Service.CongeManagerInterface;
 import ConsomiTounsi.controllers.simple_controllers.MessageResponseModel;
-import ConsomiTounsi.entities.Conge;
-import ConsomiTounsi.entities.Departement;
-import ConsomiTounsi.entities.Historique;
-import ConsomiTounsi.entities.TypeHistorique;
+import ConsomiTounsi.entities.*;
 import ConsomiTounsi.repository.CongeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,10 +15,10 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+@CrossOrigin(origins = "*")
 
 @RestController
 @RequestMapping("/Conge")
-@CrossOrigin(origins = "*")
 public class CongeController {
 
     @Autowired
@@ -29,6 +26,8 @@ public class CongeController {
 
     @Autowired
     CongeRepository cr ;
+
+
 
 
 
@@ -94,6 +93,12 @@ public class CongeController {
     @PostMapping("/AnnuleValidationFinale/{CongeId}/{AvisFinale}")
     public void AnnuleValidationFinale(@PathVariable("CongeId") Long CongeId,@PathVariable("AvisFinale") String AvisFinale) {
         CongeI.AnnuleValidationFinale(CongeId,AvisFinale);
+    }
+
+
+    @GetMapping("/getiduserbyidconge/{idConge}")
+    public DetailsUserConge getDetailsUserByIdConge(@PathVariable("idConge") Long idConge) {
+             return CongeI.getDetailsUserByIdConge(idConge);
     }
 
 

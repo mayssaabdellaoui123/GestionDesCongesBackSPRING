@@ -21,6 +21,9 @@ public interface ClientRepository extends CrudRepository<Client, Long> {
 
 	boolean existsByMatricule(String matricule);
 
+
+
+
 	Optional<Client> findTopByOrderByIdUserDesc();
 
 

@@ -1,6 +1,7 @@
 package ConsomiTounsi.Service;
 
 import ConsomiTounsi.entities.Conge;
+import ConsomiTounsi.entities.DetailsUserConge;
 
 import java.util.List;
 
@@ -22,6 +23,8 @@ public interface CongeManagerInterface {
 
     void ValidationFinale(Long CongeId);
     void AnnuleValidationFinale(Long CongeId, String username);
+
+    public DetailsUserConge getDetailsUserByIdConge(Long idConge);
 
 
 

@@ -1,13 +1,8 @@
 package ConsomiTounsi.Service;
 
-import ConsomiTounsi.entities.Admin;
-import ConsomiTounsi.entities.Conge;
-import ConsomiTounsi.entities.Departement;
-import ConsomiTounsi.entities.User;
-import ConsomiTounsi.repository.AdminRepository;
-import ConsomiTounsi.repository.CongeRepository;
-import ConsomiTounsi.repository.DepartementRepository;
-import ConsomiTounsi.repository.UserRepository;
+import ConsomiTounsi.configuration.security.UserDetails;
+import ConsomiTounsi.entities.*;
+import ConsomiTounsi.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -27,6 +22,8 @@ public class CongeManager implements CongeManagerInterface {
 
     @Autowired
     CongeRepository cr ;
+    @Autowired
+    ClientRepository cR ;
     @Autowired
     UserRepository ur ;
     @Autowired
@@ -161,6 +158,32 @@ public class CongeManager implements CongeManagerInterface {
         c.setAvisFinale(AvisFinale);
 
         cr.save(c);
+
+    }
+
+
+    @Override
+    public DetailsUserConge getDetailsUserByIdConge(Long idConge){
+
+        long idUser = cr.getIdUserByIdConge(idConge);
+        Client u = cR.findByIdUser(idUser);
+
+        Departement d = u.getDepartement();
+
+        DetailsUserConge user = new DetailsUserConge();
+
+
+
+        user.setFirstname(u.getFirstNameUser());
+        user.setLastname(u.getLastNameUser());
+        user.setMatricule(u.getMatricule());
+        user.setPhone(u.getPhoneNumberUser());
+        user.setTache(u.getWorkfieldClient());
+        user.setMatriculeBossdep(d.getMatriculeBoss());
+        user.setMatriculeRemplaceur(d.getMatriculeRemplaceur());
+        user.setDepartment(d.getNomDepartement());
+
+        return user;
 
     }
 
