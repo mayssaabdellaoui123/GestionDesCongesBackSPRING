@@ -119,6 +119,12 @@ public class CongeController {
     }
 
 
+    @GetMapping("/getCongeByIdConge/{idConge}")
+    public Conge getCongeByIdConge(@PathVariable("idConge") Long idConge) {
+        return CongeI.getCongeByIdConge(idConge);
+    }
+
+
 
 
 

@@ -30,6 +30,8 @@ public interface CongeManagerInterface {
 
     Boolean deleteConge(Long idConge);
 
+    public Conge getCongeByIdConge(Long idConge);
+
 
 
 
