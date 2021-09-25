@@ -24,6 +24,9 @@ public interface CongeManagerInterface {
     void AnnuleValidationFinale(Long CongeId, String username);
 
     List<Conge> GetCongesForDirecGen();
+    List<Conge> GetCongesForSA();
+
+    Boolean deleteConge(Long idConge);
 
 
 

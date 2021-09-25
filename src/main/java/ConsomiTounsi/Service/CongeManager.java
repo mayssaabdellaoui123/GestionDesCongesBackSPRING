@@ -42,6 +42,17 @@ public class CongeManager implements CongeManagerInterface {
         return cr.save(c);
     }
 
+    @Override
+    public Boolean deleteConge(Long idConge) {
+        Boolean res = Boolean.FALSE;
+        Conge c = cr.getByIdConge(idConge);
+        if(!c.isValidationFinale()){
+            cr.deleteById(idConge);
+            res = Boolean.TRUE;
+        }
+        return res;
+    }
+
    @Override
     public void addCongeEtAffectation (Conge c, String username){
 
@@ -87,7 +98,6 @@ public class CongeManager implements CongeManagerInterface {
         return conges ;
     }
 
-
     @Override
     public List<Conge> GetCongesForDirecGen(){
 
@@ -97,15 +107,21 @@ public class CongeManager implements CongeManagerInterface {
         List<Long> ids = new ArrayList<>();
         for(Admin admin:admins){
             ids.addAll(ur.getIdUserByMatricule(admin.getMatriculeBoss()));
-            System.out.println("matricules : "+admin.getMatriculeBoss());
-            System.out.println("ids : "+ids);
         }
 
         List<Conge> conges = new ArrayList<>();
         for(Long id:ids){
             conges.addAll(cr.getCongeByUserIdUser(id));
-            System.out.println("Conges : "+conges);
         }
+        return conges ;
+    }
+
+    @Override
+    public List<Conge> GetCongesForSA(){
+
+        List<Conge> conges =cr.GetCongesForSA(Boolean.TRUE);
+
+        System.out.println("conges : "+conges);
         return conges ;
     }
 

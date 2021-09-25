@@ -73,36 +73,10 @@ public class DepartmentController {
     @PostMapping("/addDep")
     public ResponseEntity addDepartment( @RequestBody Departement department) {
 
-
             if (!(cr.existsByMatricule(department.getMatriculeBoss()))) {
                 return new ResponseEntity<>(new MessageResponseModel("Matricule boss is not found"),
                         HttpStatus.BAD_REQUEST);
             }
-
-            //Historique
-        Historique H = new Historique();
-
-        H.setAction("DEPARTMENT");
-
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        H.setDate(now);
-
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-        H.setOwner(username);
-
-
-        TypeHistorique ex= null;
-        H.setTypehistorique(ex.NOT_IMPORTANT);
-
-        //Departement OldD = dr.findById(department.getIdDepartement()).get();
-        String Description = "ADD DEPARTMENT => nom de department : "+ department.getNomDepartement()+" // Matricule Boss : "+department.getMatriculeBoss() ;
-        H.setDescription(Description);
-
-        hr.save(H);
-
-        /////////////
 
         DepartmentI.addDepartment(department);
         return new ResponseEntity<>(new MessageResponseModel("Department registered successfully!"), HttpStatus.OK);
@@ -119,7 +93,7 @@ public class DepartmentController {
         }
 
         // Historique
-        Historique H = new Historique();
+       /* Historique H = new Historique();
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
@@ -140,7 +114,7 @@ public class DepartmentController {
 
         //test affichage only li tbadel
 
-        Departement OldD = dr.findById(department.getIdDepartement()).get();
+       /* Departement OldD = dr.findById(department.getIdDepartement()).get();
         String Description = "UPDATE DEPARTMENT ::" ;
 
         if(!OldD.getNomDepartement().equals(department.getNomDepartement())){
@@ -152,7 +126,7 @@ public class DepartmentController {
 
         H.setDescription(Description);
 
-        hr.save(H);
+        hr.save(H);*/
 
         /////////////////
 
@@ -171,7 +145,7 @@ public class DepartmentController {
 
 
         //Historique
-        Historique H = new Historique();
+        /*Historique H = new Historique();
 
         H.setAction("DEPARTMENT");
 
@@ -192,12 +166,8 @@ public class DepartmentController {
         H.setDescription(Description);
 
         hr.save(H);
-
+*/
         /////////////
-
-
-
-
 
         DepartmentI.deleteDepartmentById(id);
         return new ResponseEntity<>(HttpStatus.OK);
