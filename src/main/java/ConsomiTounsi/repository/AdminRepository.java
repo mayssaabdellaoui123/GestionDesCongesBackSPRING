@@ -21,6 +21,12 @@ public interface AdminRepository extends CrudRepository<Admin,Long>{
 	@Query("SELECT roleAdmin FROM Admin a WHERE a.idUser = :id ")
 	Role findRoleById(@Param("id") Long id);
 
+	Admin findByMatriculeBoss(String matricule);
+
+	@Query("SELECT matriculeBoss FROM Admin a WHERE a.usernameUser = :username ")
+	String findMatriculeBossByUserName(@Param("username")String username);
+
+
 	//Admin findByUsernameUser(String name);
 
 	@Query("SELECT COUNT(a) FROM Admin a WHERE a.roleAdmin= :role" )

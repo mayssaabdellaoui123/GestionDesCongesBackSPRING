@@ -35,8 +35,18 @@ public class Conge implements Serializable {
     private String AvisPrimaire;
     private String AvisFinale;
 
+    public String getMatriculeOwnerVP() {
+        return MatriculeOwnerVP;
+    }
 
-    private boolean validationPrimaire = false;
+    public void setMatriculeOwnerVP(String matriculeOwnerVP) {
+        MatriculeOwnerVP = matriculeOwnerVP;
+    }
+
+    private String MatriculeOwnerVP ;
+
+
+    private boolean validationPrimaire ;
 
     public void setIdConge(long idConge) {
         this.idConge = idConge;
@@ -126,7 +136,7 @@ public class Conge implements Serializable {
         return titreDeConge;
     }
 
-    private boolean validationFinale = false;
+    private boolean validationFinale ;
 
 
 

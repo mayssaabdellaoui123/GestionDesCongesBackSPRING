@@ -10,5 +10,20 @@ public interface CongeManagerInterface {
     void AffectEmployeConge(long CongeId, String matricule);
 
     void addCongeEtAffectation (Conge c , String userName) ;
-    List<Conge> getiddep (String username);
+
+    List<Conge> GetCongesForChefDep (String username);
+    List<Conge> GetCongesForEmp (String username);
+
+    void ValidationPrimaireChefDep (Long CongeId, String username);
+    void AnnuleValidationPrimaireChefDep (Long CongeId, String username , String AvisPrimaire);
+
+    void ValidationPrimaireRemplaceur (Long CongeId, String username);
+    void AnnuleValidationPrimaireRemplaceur (Long CongeId, String username, String AvisPrimaire);
+
+    void ValidationFinale(Long CongeId);
+    void AnnuleValidationFinale(Long CongeId, String username);
+
+
+
+
 }

@@ -57,15 +57,44 @@ public class CongeController {
 
     }
 
-    @GetMapping("/getiddep/{userName}")
-    public List<Conge> getiddep(@PathVariable("userName") String userName) {
+    @GetMapping("/GetCongesForChefDep/{userName}")
+    public List<Conge> GetCongesForChefDep(@PathVariable("userName") String userName) {
+        return CongeI.GetCongesForChefDep(userName);
+    }
 
-        return CongeI.getiddep(userName);
-
-
+    @GetMapping("/GetCongesForEmp/{userName}")
+    public List<Conge> GetCongesForEmp(@PathVariable("userName") String userName) {
+        return CongeI.GetCongesForEmp(userName);
     }
 
 
+    @PostMapping("/ValidationPrimaireChefDep/{CongeId}/{username}")
+    public void ValidationPrimaireChefDep(@PathVariable("CongeId") Long CongeId,@PathVariable("username") String username) {
+        CongeI.ValidationPrimaireChefDep(CongeId,username);
+    }
+
+    @PostMapping("/ValidationPrimaireRemplaceur/{CongeId}/{username}")
+    public void ValidationPrimaireRemplaceur(@PathVariable("CongeId") Long CongeId,@PathVariable("username") String username) {
+        CongeI.ValidationPrimaireRemplaceur(CongeId,username);
+    }
+
+    @PostMapping("/AnnuleValidationPrimaireChefDep/{CongeId}/{username}/{AvisPrimaire}")
+    public void AnnuleValidationPrimaireChefDep(@PathVariable("CongeId") Long CongeId,@PathVariable("username") String username,@PathVariable("AvisPrimaire") String AvisPrimaire) {
+        CongeI.AnnuleValidationPrimaireChefDep(CongeId,username,AvisPrimaire);
+    }
+    @PostMapping("/AnnuleValidationPrimaireRemplaceur/{CongeId}/{username}/{AvisPrimaire}")
+    public void AnnuleValidationPrimaireRemplaceur(@PathVariable("CongeId") Long CongeId,@PathVariable("username") String username,@PathVariable("AvisPrimaire") String AvisPrimaire) {
+        CongeI.AnnuleValidationPrimaireRemplaceur(CongeId,username,AvisPrimaire);
+    }
+
+    @PostMapping("/ValidationFinale/{CongeId}")
+    public void ValidationFinale(@PathVariable("CongeId") Long CongeId) {
+        CongeI.ValidationFinale(CongeId);
+    }
+    @PostMapping("/AnnuleValidationFinale/{CongeId}/{AvisFinale}")
+    public void AnnuleValidationFinale(@PathVariable("CongeId") Long CongeId,@PathVariable("AvisFinale") String AvisFinale) {
+        CongeI.AnnuleValidationFinale(CongeId,AvisFinale);
+    }
 
 
 

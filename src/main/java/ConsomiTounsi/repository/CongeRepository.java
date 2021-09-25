@@ -13,9 +13,13 @@ import java.util.List;
 public interface CongeRepository extends JpaRepository<Conge,Long> {
 
 
+    /*
     @Query(value= " SELECT * , 0 AS clazz_ FROM conge c WHERE c.users_id_user= :userId AND validation_primaire= :VF", nativeQuery = true)
     List<Conge> getCongeByUserIdUserAndVF(@Param("userId") Long userId, @Param("VF") Boolean VF ) ;
+     */
 
+    @Query(value= " SELECT * , 0 AS clazz_ FROM conge c WHERE c.users_id_user= :userId", nativeQuery = true)
+    List<Conge> getCongeByUserIdUser(@Param("userId") Long userId ) ;
 
 
 }

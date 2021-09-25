@@ -121,7 +121,12 @@ public class AdminManager implements AdminManagerInterface{
         user.setRoleUser(UserRole.ADMIN);
         String subject = "Account Activated";
         emailSenderService.sendEmail(user.getEmailAddressUser(), body(name , user.getUsernameUser(), password) ,subject );
-        return Ar.save(user);
+        Ar.save(user);
+
+        //User a = ur.findUserByMatricule(user.getMatriculeBoss()).get();
+        user.setMatricule(user.getMatriculeBoss());
+
+        return user;
     }
 
     @Override

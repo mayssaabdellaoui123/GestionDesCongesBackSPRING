@@ -1,8 +1,10 @@
 package ConsomiTounsi.Service;
 
+import ConsomiTounsi.entities.Admin;
 import ConsomiTounsi.entities.Conge;
 import ConsomiTounsi.entities.Departement;
 import ConsomiTounsi.entities.User;
+import ConsomiTounsi.repository.AdminRepository;
 import ConsomiTounsi.repository.CongeRepository;
 import ConsomiTounsi.repository.DepartementRepository;
 import ConsomiTounsi.repository.UserRepository;
@@ -27,6 +29,8 @@ public class CongeManager implements CongeManagerInterface {
     CongeRepository cr ;
     @Autowired
     UserRepository ur ;
+    @Autowired
+    AdminRepository ar;
 
     @Autowired
     DepartementRepository dr ;
@@ -71,7 +75,7 @@ public class CongeManager implements CongeManagerInterface {
     }
 
     @Override
-    public List<Conge> getiddep (String username){
+    public List<Conge> GetCongesForChefDep (String username){
         User u = ur.findByUsernameUser(username).get();
         List<Long> IdDep = dr.getIdDepartmentByMatriculeBoss(u.getMatricule());
 
@@ -83,8 +87,81 @@ public class CongeManager implements CongeManagerInterface {
 
         List<Conge> conges = new ArrayList<>();
         for(User userDep:usersDep){
-            conges.addAll(cr.getCongeByUserIdUserAndVF(userDep.getIdUser(),Boolean.FALSE));
+            conges.addAll(cr.getCongeByUserIdUser(userDep.getIdUser()));
         }
         return conges ;
     }
+
+    @Override
+    public List<Conge> GetCongesForEmp (String username){
+        User u = ur.findByUsernameUser(username).get();
+        List<Conge> conges =cr.getCongeByUserIdUser(u.getIdUser());
+
+        return conges ;
+    }
+
+
+
+    @Override
+    public void ValidationPrimaireChefDep (Long CongeId, String username){
+        Conge c = cr.findById(CongeId).get();
+        c.setValidationPrimaire(Boolean.TRUE);
+
+        String matriculeboss = ar.findMatriculeBossByUserName(username);
+        c.setMatriculeOwnerVP(matriculeboss);
+        cr.save(c);
+    }
+
+    @Override
+    public void ValidationPrimaireRemplaceur (Long CongeId, String username){
+        Conge c = cr.findById(CongeId).get();
+        c.setValidationPrimaire(Boolean.TRUE);
+
+        String matricule = ur.findByUsernameUser(username).get().getMatricule() ;
+        c.setMatriculeOwnerVP(matricule);
+        cr.save(c);
+    }
+
+    @Override
+    public void AnnuleValidationPrimaireChefDep (Long CongeId, String username, String AvisPrimaire){
+        Conge c = cr.findById(CongeId).get();
+        c.setValidationPrimaire(Boolean.FALSE);
+
+        c.setAvisPrimaire(AvisPrimaire);
+
+        String matriculeboss = ar.findMatriculeBossByUserName(username);
+        c.setMatriculeOwnerVP(matriculeboss);
+        cr.save(c);
+    }
+
+    @Override
+    public void AnnuleValidationPrimaireRemplaceur (Long CongeId, String username, String AvisPrimaire){
+        Conge c = cr.findById(CongeId).get();
+        c.setValidationPrimaire(Boolean.FALSE);
+
+        c.setAvisPrimaire(AvisPrimaire);
+
+        String matricule = ur.findByUsernameUser(username).get().getMatricule() ;
+        c.setMatriculeOwnerVP(matricule);
+        cr.save(c);
+    }
+
+    @Override
+    public void ValidationFinale (Long CongeId ){
+        Conge c = cr.findById(CongeId).get();
+        c.setValidationFinale(Boolean.TRUE);
+
+        cr.save(c);
+    }
+
+    @Override
+    public void AnnuleValidationFinale (Long CongeId, String AvisFinale){
+        Conge c = cr.findById(CongeId).get();
+        c.setValidationFinale(Boolean.FALSE);
+        c.setAvisFinale(AvisFinale);
+
+        cr.save(c);
+
+    }
+
 }
