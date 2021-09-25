@@ -67,6 +67,10 @@ public class CongeController {
         return CongeI.GetCongesForEmp(userName);
     }
 
+    @GetMapping("/GetCongesForDirecGen/")
+    public List<Conge> GetCongesForDirecGen() {
+        return CongeI.GetCongesForDirecGen();
+    }
 
     @PostMapping("/ValidationPrimaireChefDep/{CongeId}/{username}")
     public void ValidationPrimaireChefDep(@PathVariable("CongeId") Long CongeId,@PathVariable("username") String username) {
@@ -95,6 +99,8 @@ public class CongeController {
     public void AnnuleValidationFinale(@PathVariable("CongeId") Long CongeId,@PathVariable("AvisFinale") String AvisFinale) {
         CongeI.AnnuleValidationFinale(CongeId,AvisFinale);
     }
+
+
 
 
 

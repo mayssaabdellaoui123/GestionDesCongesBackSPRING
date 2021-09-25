@@ -23,6 +23,8 @@ public interface CongeManagerInterface {
     void ValidationFinale(Long CongeId);
     void AnnuleValidationFinale(Long CongeId, String username);
 
+    List<Conge> GetCongesForDirecGen();
+
 
 
 

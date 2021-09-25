@@ -1,9 +1,6 @@
 package ConsomiTounsi.Service;
 
-import ConsomiTounsi.entities.Admin;
-import ConsomiTounsi.entities.Conge;
-import ConsomiTounsi.entities.Departement;
-import ConsomiTounsi.entities.User;
+import ConsomiTounsi.entities.*;
 import ConsomiTounsi.repository.AdminRepository;
 import ConsomiTounsi.repository.CongeRepository;
 import ConsomiTounsi.repository.DepartementRepository;
@@ -15,10 +12,8 @@ import org.springframework.util.ObjectUtils;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 @Service
@@ -92,6 +87,28 @@ public class CongeManager implements CongeManagerInterface {
         return conges ;
     }
 
+
+    @Override
+    public List<Conge> GetCongesForDirecGen(){
+
+        List<Admin> admins = ar.findByRoleAdmin(Role.DEPARTMENT_BOSS);
+        System.out.println("admins : "+admins);
+
+        List<Long> ids = new ArrayList<>();
+        for(Admin admin:admins){
+            ids.addAll(ur.getIdUserByMatricule(admin.getMatriculeBoss()));
+            System.out.println("matricules : "+admin.getMatriculeBoss());
+            System.out.println("ids : "+ids);
+        }
+
+        List<Conge> conges = new ArrayList<>();
+        for(Long id:ids){
+            conges.addAll(cr.getCongeByUserIdUser(id));
+            System.out.println("Conges : "+conges);
+        }
+        return conges ;
+    }
+
     @Override
     public List<Conge> GetCongesForEmp (String username){
         User u = ur.findByUsernameUser(username).get();
@@ -99,8 +116,6 @@ public class CongeManager implements CongeManagerInterface {
 
         return conges ;
     }
-
-
 
     @Override
     public void ValidationPrimaireChefDep (Long CongeId, String username){

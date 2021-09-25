@@ -56,6 +56,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
 	@Query(value= " SELECT * , 0 AS clazz_ FROM user u WHERE u.departement_id_departement= :depId", nativeQuery = true)
 	List<User>  getUserByIdDep( @Param("depId") Long depId ) ;
 
-	
+	@Query("SELECT u.idUser FROM User u WHERE u.matricule= :matricule")
+	List<Long> getIdUserByMatricule(@Param("matricule") String matricule) ;
 	
 }
