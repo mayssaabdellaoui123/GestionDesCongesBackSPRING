@@ -61,6 +61,8 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
 	@Query(value="select * from user where departement_id_departement=?1", nativeQuery = true)
 	List<User> retrieveUsersByDepartment(long id);
+	@Query(value= " SELECT * , 0 AS clazz_ FROM user u WHERE u.departement_id_departement= :depId", nativeQuery = true)
+	List<User>  getUserByIdDep( @Param("depId") Long depId ) ;
 
 	
 	
