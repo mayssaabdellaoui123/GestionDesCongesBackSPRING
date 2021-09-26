@@ -59,7 +59,7 @@ public class DepartmentController {
 
 
     @GetMapping("/getNameDepartmentByMatriculeBoss/{matricule}")
-    public List<String> getNameDepartmentByMatriculeBoss(@PathVariable("matricule") String matricule)
+    public  List<String> getNameDepartmentByMatriculeBoss(@PathVariable("matricule") String matricule)
     {
         return dm.getNameDepartmentByMatriculeBoss(matricule);
     }
