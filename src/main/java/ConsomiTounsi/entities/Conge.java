@@ -35,6 +35,16 @@ public class Conge implements Serializable {
     private String AvisPrimaire;
     private String AvisFinale;
 
+    public boolean isAttente() {
+        return attente;
+    }
+
+    public void setAttente(boolean attente) {
+        this.attente = attente;
+    }
+
+    private boolean attente  ;
+
     public String getMatriculeOwnerVP() {
         return MatriculeOwnerVP;
     }

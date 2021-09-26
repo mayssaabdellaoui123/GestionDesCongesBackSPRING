@@ -84,7 +84,7 @@ public class CongeController {
         return CongeI.GetCongesForDirecGen();
     }
 
-    @PostMapping("/ValidationPrimaireChefDep/{CongeId}/{username}")
+    @DeleteMapping("/ValidationPrimaireChefDep/{CongeId}/{username}")
     public void ValidationPrimaireChefDep(@PathVariable("CongeId") Long CongeId,@PathVariable("username") String username) {
         CongeI.ValidationPrimaireChefDep(CongeId,username);
     }
@@ -94,7 +94,7 @@ public class CongeController {
         CongeI.ValidationPrimaireRemplaceur(CongeId,username);
     }
 
-    @PostMapping("/AnnuleValidationPrimaireChefDep/{CongeId}/{username}/{AvisPrimaire}")
+    @DeleteMapping("/AnnuleValidationPrimaireChefDep/{CongeId}/{username}/{AvisPrimaire}")
     public void AnnuleValidationPrimaireChefDep(@PathVariable("CongeId") Long CongeId,@PathVariable("username") String username,@PathVariable("AvisPrimaire") String AvisPrimaire) {
         CongeI.AnnuleValidationPrimaireChefDep(CongeId,username,AvisPrimaire);
     }
@@ -124,7 +124,10 @@ public class CongeController {
         return CongeI.getCongeByIdConge(idConge);
     }
 
-
+    @GetMapping("/getusernameUserByMatricule/{matricule}")
+    public Client getusernameUserByMatricule(@PathVariable("matricule") String matricule){
+        return  CongeI.getusernameUserByMatricule(matricule);
+    }
 
 
 

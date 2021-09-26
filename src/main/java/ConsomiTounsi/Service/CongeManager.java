@@ -103,6 +103,8 @@ public class CongeManager implements CongeManagerInterface {
         for(User userDep:usersDep){
             conges.addAll(cr.getCongeByUserIdUser(userDep.getIdUser()));
         }
+
+        Collections.reverse(conges);
         return conges ;
     }
 
@@ -121,6 +123,8 @@ public class CongeManager implements CongeManagerInterface {
         for(Long id:ids){
             conges.addAll(cr.getCongeByUserIdUser(id));
         }
+
+        Collections.reverse(conges);
         return conges ;
     }
 
@@ -130,6 +134,8 @@ public class CongeManager implements CongeManagerInterface {
         List<Conge> conges =cr.GetCongesForSA(Boolean.TRUE);
 
         System.out.println("conges : "+conges);
+
+        Collections.reverse(conges);
         return conges ;
     }
 
@@ -138,6 +144,7 @@ public class CongeManager implements CongeManagerInterface {
         User u = ur.findByUsernameUser(username).get();
         List<Conge> conges =cr.getCongeByUserIdUser(u.getIdUser());
 
+        Collections.reverse(conges);
         return conges ;
     }
 
@@ -152,11 +159,15 @@ public class CongeManager implements CongeManagerInterface {
         Conge c = cr.findById(CongeId).get();
         c.setValidationPrimaire(Boolean.TRUE);
 
+        c.setAttente(Boolean.TRUE);
+
         String matriculeboss = ar.findMatriculeBossByUserName(username);
         String nameDepartment = dr.getNameDepartmentByMatriculeBossUnique(matriculeboss);
         c.setMatriculeOwnerVP(matriculeboss);
         cr.save(c);
         /**mail*/
+
+
 
         Long idUser = cr.getIdUserByIdConge(CongeId);
         User User = ur.findByIdUser(idUser);
@@ -245,6 +256,8 @@ public class CongeManager implements CongeManagerInterface {
         Conge c = cr.findById(CongeId).get();
         c.setValidationPrimaire(Boolean.TRUE);
 
+        c.setAttente(Boolean.TRUE);
+
         String matricule = ur.findByUsernameUser(username).get().getMatricule() ;
         c.setMatriculeOwnerVP(matricule);
         cr.save(c);
@@ -254,6 +267,8 @@ public class CongeManager implements CongeManagerInterface {
     public void AnnuleValidationPrimaireChefDep (Long CongeId, String username, String AvisPrimaire){
         Conge c = cr.findById(CongeId).get();
         c.setValidationPrimaire(Boolean.FALSE);
+
+        c.setAttente(Boolean.TRUE);
 
         c.setAvisPrimaire(AvisPrimaire);
 
@@ -266,6 +281,8 @@ public class CongeManager implements CongeManagerInterface {
     public void AnnuleValidationPrimaireRemplaceur (Long CongeId, String username, String AvisPrimaire){
         Conge c = cr.findById(CongeId).get();
         c.setValidationPrimaire(Boolean.FALSE);
+
+        c.setAttente(Boolean.TRUE);
 
         c.setAvisPrimaire(AvisPrimaire);
 
@@ -324,4 +341,13 @@ public class CongeManager implements CongeManagerInterface {
         Conge c = cr.getByIdConge(idConge);
         return c;
     }
+
+    @Override
+    public Client getusernameUserByMatricule(String matricule){
+        Client c = cR.getClientByMatricule(matricule);
+
+        return c;
+    }
+
+
 }
