@@ -115,7 +115,7 @@ public class AdminManager implements AdminManagerInterface{
         user.setNbabsenceAdmin(0);
         user.setNbaccessUser(0);
         String name = user.getFirstNameUser();
-        String password = user.getUsernameUser() + user.getMatriculeBoss() ;
+        String password = user.getUsernameUser() + "itceq"  ;
         String encodedPassword = bCryptPasswordEncoder.encode(password);
         user.setPasswordUser(encodedPassword);
         user.setRoleUser(UserRole.ADMIN);

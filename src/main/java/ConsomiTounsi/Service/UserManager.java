@@ -122,8 +122,8 @@ public class UserManager implements UserManagerInterface //, UserDetailsService 
 		return ur.findByUsernameUser(username).orElse(new User());
 	}
 
-	public String getNMatriculeByUsernameUser(String Username){
+	/*public String getNMatriculeByUsernameUser(String Username){
 		return  ur.retrieveMatriculeClientByUsername(Username);
 
-	}
+	}*/
 }

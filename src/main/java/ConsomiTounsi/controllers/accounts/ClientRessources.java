@@ -1,6 +1,7 @@
 package ConsomiTounsi.controllers.accounts;
 
 import ConsomiTounsi.Service.ClientManagerInterface;
+import ConsomiTounsi.Service.DepartementManager;
 import ConsomiTounsi.entities.*;
 import ConsomiTounsi.repository.AdminRepository;
 import ConsomiTounsi.repository.ClientRepository;
@@ -27,6 +28,9 @@ public class ClientRessources {
 
     @Autowired
     UserRepository ur;
+
+    @Autowired
+    DepartementManager dm;
 
     @Autowired
     ClientRepository cr;
@@ -92,6 +96,17 @@ public class ClientRessources {
     @PutMapping("/update")
     public ResponseEntity<Client> updateEmployee(@RequestBody Client employee) {
 
+        ////
+
+        User u = cr.findById(employee.getIdUser()).get();
+
+        Departement d = u.getDepartement();
+
+
+
+
+        ////
+
         //Historique
         Historique H = new Historique();
 
@@ -153,10 +168,14 @@ public class ClientRessources {
 
         H.setDescription(Description);
 
+
+
         hr.save(H);
         /////////////
 
         Client updateEmployee = cs.updateClient(employee);
+
+        dm.AffectEmployeeDepartment(d.getIdDepartement(),updateEmployee.getMatricule());
         return new ResponseEntity<>(updateEmployee, HttpStatus.OK);
     }
 

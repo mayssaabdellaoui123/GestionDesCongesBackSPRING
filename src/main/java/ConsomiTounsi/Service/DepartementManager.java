@@ -1,13 +1,7 @@
 package ConsomiTounsi.Service;
 
-import ConsomiTounsi.entities.Client;
-import ConsomiTounsi.entities.Departement;
-import ConsomiTounsi.entities.Historique;
-import ConsomiTounsi.entities.User;
-import ConsomiTounsi.repository.ClientRepository;
-import ConsomiTounsi.repository.DepartementRepository;
-import ConsomiTounsi.repository.HistoriqueRepository;
-import ConsomiTounsi.repository.UserRepository;
+import ConsomiTounsi.entities.*;
+import ConsomiTounsi.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -21,7 +15,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.security.core.context.SecurityContextHolder;
-import ConsomiTounsi.entities.TypeHistorique;
 
 
 @Service
@@ -30,6 +23,9 @@ public class DepartementManager implements DepartementManagerInterface{
 
     @Autowired
     DepartementRepository dr;
+
+    @Autowired
+    AdminRepository ar;
 
     @Autowired
     UserRepository ur ;
@@ -80,9 +76,12 @@ public class DepartementManager implements DepartementManagerInterface{
         if(!OldD.getNomDepartement().equals(dp.getNomDepartement())){
             Description=Description+" nom de department : "+ OldD.getNomDepartement() +" => "+ dp.getNomDepartement()+ " //";
         }
-        if (!OldD.getMatriculeBoss().equals(dp.getMatriculeBoss())){
+
+        Description=Description+" Matricule Boss : "+" => "+dp.getMatriculeBoss();
+
+        /*if (!OldD.getMatriculeBoss().equals(dp.getMatriculeBoss())){
             Description=Description+" Matricule Boss : "+ OldD.getMatriculeBoss()+" => "+dp.getMatriculeBoss();
-        }
+        }*/
 
         hi.AddHistory("DEPARTMENT",username,TypeHistorique.NOT_IMPORTANT,Description);
         ////////
@@ -106,7 +105,8 @@ public class DepartementManager implements DepartementManagerInterface{
         dr.deleteById(id);
     }
 
-    public  List<String> getNameDepartmentByMatriculeBoss(String MatriculeBoss){
+    @Override
+    public  String getNameDepartmentByMatriculeBoss(String MatriculeBoss){
         return  dr.getNameDepartmentByMatriculeBoss(MatriculeBoss);
 
     }
@@ -132,6 +132,38 @@ public class DepartementManager implements DepartementManagerInterface{
         u.setDepartement(null); ur.save(u);
         d.getUsers().remove(u); dr.save(d);
     }
+
+
+    @Override
+    public Departement retrieveNameDepartmentByUsername (String username){
+      Long idDep = ur.retrieveiddepByUsername(username);
+      System.out.println("iddep "+idDep);
+
+
+      Departement d = dr.findByIdDepartement(idDep);
+
+      return d;
+
+    }
+
+    @Override
+    public Departement retrieveNameDepartmentByUsernameChef (String username){
+
+        Long iduser = ur.retrieveIdUserByUsername(username);
+
+        System.out.println("iduser:" + iduser);
+
+        Admin a = ar.findAdminByIduser(iduser);
+
+        System.out.println("admin "+a);
+
+        Departement d = dr.findByMatriculeBoss(a.getMatriculeBoss());
+
+        return d;
+
+
+    }
+
 
 
 }

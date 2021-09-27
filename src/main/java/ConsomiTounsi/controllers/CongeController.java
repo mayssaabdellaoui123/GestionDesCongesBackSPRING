@@ -113,7 +113,7 @@ public class CongeController {
     }
 
 
-    @GetMapping("/getiduserbyidconge/{idConge}")
+    @GetMapping("/getDetailsUserByIdConge/{idConge}")
     public DetailsUserConge getDetailsUserByIdConge(@PathVariable("idConge") Long idConge) {
              return CongeI.getDetailsUserByIdConge(idConge);
     }

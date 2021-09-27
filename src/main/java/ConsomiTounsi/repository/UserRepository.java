@@ -47,11 +47,14 @@ public interface UserRepository extends JpaRepository<User,Long> {
 	List<User>  findbyRole( UserRole r ) ;
 
 	@Query("SELECT u.idUser FROM User u WHERE u.usernameUser= : user")
-	long retrieveIdClientByUsername(@Param("user") String user);
+	long retrieveIdUserByUsername(@Param("user") String user);
 
-	@Query("SELECT u.matricule FROM User u WHERE u.usernameUser= :usernameUser")
-	String retrieveMatriculeClientByUsername(@Param("usernameUser") String usernameUser);
+	/*@Query("SELECT u.matricule FROM User u WHERE u.usernameUser= :usernameUser")
+	String retrieveMatriculeClientByUsername(@Param("usernameUser") String usernameUser);*/
 
+
+	@Query(value= " SELECT departement_id_departement , 0 AS clazz_ FROM user u WHERE u.username_user= :username", nativeQuery = true)
+	Long retrieveiddepByUsername(@Param("username") String username ) ;
 
 	@Query(value= " SELECT * , 0 AS clazz_ FROM user u WHERE u.departement_id_departement= :depId", nativeQuery = true)
 	List<User>  getUserByIdDep( @Param("depId") Long depId ) ;

@@ -11,6 +11,9 @@ public interface DepartementManagerInterface {
     public Departement addDepartment ( Departement dp);
     public Departement updateDepartment(Departement dp) ;
     public void deleteDepartmentById(Long id);
+    public  String getNameDepartmentByMatriculeBoss(String MatriculeBoss);
+    public Departement retrieveNameDepartmentByUsername (String username);
+    Departement retrieveNameDepartmentByUsernameChef (String username);
 
 
 }

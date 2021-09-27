@@ -90,14 +90,20 @@ public class CongeManager implements CongeManagerInterface {
 
     @Override
     public List<Conge> GetCongesForChefDep (String username){
-        User u = ur.findByUsernameUser(username).get();
-        List<Long> IdDep = dr.getIdDepartmentByMatriculeBoss(u.getMatricule());
+        System.out.println("username : " + username);
+        Admin u = ar.findByUsernameUser(username);
+
+        System.out.println("Admin : " + u);
+        System.out.println("MatriculeBoss: " + u.getMatriculeBoss());
+        Long IdDep = dr.getIdDepartmentByMatriculeBoss(u.getMatriculeBoss());
+
+        System.out.println("idDep : " + IdDep);
 
         List<User> usersDep = new ArrayList<>();
 
-        for(Long id: IdDep){
-            usersDep.addAll(ur.getUserByIdDep(id));
-        }
+
+            usersDep.addAll(ur.getUserByIdDep(IdDep));
+
 
         List<Conge> conges = new ArrayList<>();
         for(User userDep:usersDep){
@@ -261,6 +267,8 @@ public class CongeManager implements CongeManagerInterface {
         String matricule = ur.findByUsernameUser(username).get().getMatricule() ;
         c.setMatriculeOwnerVP(matricule);
         cr.save(c);
+
+
     }
 
     @Override

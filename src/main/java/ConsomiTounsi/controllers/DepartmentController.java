@@ -41,6 +41,11 @@ public class DepartmentController {
     DepartementManager dm ;
 
     @Autowired
+    DepartementManagerInterface dmI ;
+
+
+
+    @Autowired
     HistoriqueRepository hr ;
 
     @Autowired
@@ -59,24 +64,24 @@ public class DepartmentController {
 
 
     @GetMapping("/getNameDepartmentByMatriculeBoss/{matricule}")
-    public  List<String> getNameDepartmentByMatriculeBoss(@PathVariable("matricule") String matricule)
+    public  String getNameDepartmentByMatriculeBoss(@PathVariable("matricule") String matricule)
     {
-        return dm.getNameDepartmentByMatriculeBoss(matricule);
+        return dmI.getNameDepartmentByMatriculeBoss(matricule);
     }
 
-    @GetMapping("/getNMatriculeByUsernameUser/{username}")
+   /* @GetMapping("/getNMatriculeByUsernameUser/{username}")
     public String getNMatriculeByUsernameUser(@PathVariable("username") String username)
     {
         return ur.getNMatriculeByUsernameUser(username);
-    }
+    }*/
 
     @PostMapping("/addDep")
     public ResponseEntity addDepartment( @RequestBody Departement department) {
 
-            if (!(cr.existsByMatricule(department.getMatriculeBoss()))) {
+           /* if (!(cr.existsByMatricule(department.getMatriculeBoss()))) {
                 return new ResponseEntity<>(new MessageResponseModel("Matricule boss is not found"),
                         HttpStatus.BAD_REQUEST);
-            }
+            }*/
 
         DepartmentI.addDepartment(department);
         return new ResponseEntity<>(new MessageResponseModel("Department registered successfully!"), HttpStatus.OK);
@@ -87,8 +92,13 @@ public class DepartmentController {
     @PutMapping("/update")
     public ResponseEntity<?> updateDepartment(@RequestBody Departement department) {
 
+        if ((dr.existsByMatriculeBoss(department.getMatriculeBoss()))) {
+            return new ResponseEntity<>(new MessageResponseModel("Matricule boss is taken"),
+                    HttpStatus.BAD_REQUEST);
+        }
+
         if (!(cr.existsByMatricule(department.getMatriculeBoss()))) {
-            return new ResponseEntity<>(new MessageResponseModel("Matricule boss is not found"),
+            return new ResponseEntity<>(new MessageResponseModel("User not found"),
                     HttpStatus.BAD_REQUEST);
         }
 
@@ -187,5 +197,20 @@ public class DepartmentController {
         dm.DesaffectEmployeeDepartment(DepartId, matricule);
     }
 
+
+    /*************************/
+
+
+    @GetMapping("/retrieveNameDepartmentByUsername/{username}")
+    public  Departement retrieveNameDepartmentByUsername(@PathVariable("username") String username)
+    {
+        return DepartmentI.retrieveNameDepartmentByUsername(username);
+    }
+
+    @GetMapping("/retrieveNameDepartmentByUsernameChef/{username}")
+    public  Departement retrieveNameDepartmentByUsernameChef(@PathVariable("username") String username)
+    {
+        return DepartmentI.retrieveNameDepartmentByUsernameChef(username);
+    }
 
 }
