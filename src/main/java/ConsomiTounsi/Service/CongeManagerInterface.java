@@ -38,6 +38,10 @@ public interface CongeManagerInterface {
 
     public Admin getusernameUserByMatriculeForDirecteur(String matricule);
 
+    public Boolean findRemplaceurByUserName(String username);
+
+    public List<Conge> GetCongesForRemplaceur (String username);
+
 
 
 

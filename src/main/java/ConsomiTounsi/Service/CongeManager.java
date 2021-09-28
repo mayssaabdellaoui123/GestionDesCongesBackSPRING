@@ -115,6 +115,48 @@ public class CongeManager implements CongeManagerInterface {
         return conges ;
     }
 
+    ////////////////////////////
+
+    @Override
+    public List<Conge> GetCongesForRemplaceur (String username){
+        System.out.println("username : " + username);
+       // User u = ur.findByUsernameUser(username).get();
+
+        Long IdDep = ur.getIdDepByIdUsernameUser(username);
+
+        Departement d = dr.findByIdDepartement(IdDep);
+
+       // System.out.println("Admin : " + u);
+       // System.out.println("MatriculeBoss: " + u.getMatriculeBoss());
+       // Long IdDep = dr.getIdDepartmentByMatriculeBoss(u.getMatriculeBoss());
+
+        System.out.println("idDep : " + IdDep);
+
+        List<User> usersDep = new ArrayList<>();
+
+
+        usersDep.addAll(ur.getUserByIdDep(IdDep));
+
+
+        List<Conge> conges = new ArrayList<>();
+        for(User userDep:usersDep){
+            if (!userDep.getMatricule().equals(d.getMatriculeBoss()))
+                conges.addAll(cr.getCongeByUserIdUser(userDep.getIdUser()));
+        }
+
+        Collections.reverse(conges);
+        return conges ;
+    }
+
+
+
+
+
+
+
+
+    //////////////////////////////
+
     @Override
     public List<Conge> GetCongesForDirecGen(){
 
@@ -363,6 +405,14 @@ public class CongeManager implements CongeManagerInterface {
         Admin a = ar.getAdminByMatricule(matricule);
 
         return a;
+    }
+
+
+    @Override
+    public Boolean findRemplaceurByUserName(String username){
+        Boolean test = cR.findRemplaceurByUserName(username);
+
+        return test;
     }
 
 
