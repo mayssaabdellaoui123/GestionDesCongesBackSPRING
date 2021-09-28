@@ -304,6 +304,7 @@ public class CongeManager implements CongeManagerInterface {
         Conge c = cr.findById(CongeId).get();
         c.setValidationFinale(Boolean.TRUE);
 
+        c.setAttenteFinale(Boolean.TRUE);
         cr.save(c);
     }
 
@@ -312,6 +313,8 @@ public class CongeManager implements CongeManagerInterface {
         Conge c = cr.findById(CongeId).get();
         c.setValidationFinale(Boolean.FALSE);
         c.setAvisFinale(AvisFinale);
+
+        c.setAttenteFinale(Boolean.TRUE);
 
         cr.save(c);
 

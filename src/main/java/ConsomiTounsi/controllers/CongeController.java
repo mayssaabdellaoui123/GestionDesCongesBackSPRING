@@ -103,11 +103,11 @@ public class CongeController {
         CongeI.AnnuleValidationPrimaireRemplaceur(CongeId,username,AvisPrimaire);
     }
 
-    @PostMapping("/ValidationFinale/{CongeId}")
+    @DeleteMapping("/ValidationFinale/{CongeId}")
     public void ValidationFinale(@PathVariable("CongeId") Long CongeId) {
         CongeI.ValidationFinale(CongeId);
     }
-    @PostMapping("/AnnuleValidationFinale/{CongeId}/{AvisFinale}")
+    @DeleteMapping("/AnnuleValidationFinale/{CongeId}/{AvisFinale}")
     public void AnnuleValidationFinale(@PathVariable("CongeId") Long CongeId,@PathVariable("AvisFinale") String AvisFinale) {
         CongeI.AnnuleValidationFinale(CongeId,AvisFinale);
     }

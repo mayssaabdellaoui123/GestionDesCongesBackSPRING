@@ -45,6 +45,16 @@ public class Conge implements Serializable {
 
     private boolean attente  ;
 
+    public boolean isAttenteFinale() {
+        return attenteFinale;
+    }
+
+    public void setAttenteFinale(boolean attenteFinale) {
+        this.attenteFinale = attenteFinale;
+    }
+
+    private boolean attenteFinale  ;
+
     public String getMatriculeOwnerVP() {
         return MatriculeOwnerVP;
     }
