@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import ConsomiTounsi.entities.Client;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -56,6 +57,9 @@ public interface AdminRepository extends CrudRepository<Admin,Long>{
 	@Modifying
 	@Query(value="UPDATE admin a SET a.nbabsence_admin=:nb WHERE a.id_user=:id",nativeQuery= true)
 	int AddAbsence(@Param("nb") int nb , @Param("id") long id);
+
+	@Query("SELECT a FROM Admin a WHERE a.matriculeBoss= :matricule")
+	Admin getAdminByMatricule(@Param("matricule") String matricule) ;
 
 	
 

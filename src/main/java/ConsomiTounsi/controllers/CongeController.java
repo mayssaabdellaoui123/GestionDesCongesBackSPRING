@@ -89,7 +89,7 @@ public class CongeController {
         CongeI.ValidationPrimaireChefDep(CongeId,username);
     }
 
-    @PostMapping("/ValidationPrimaireRemplaceur/{CongeId}/{username}")
+    @DeleteMapping("/ValidationPrimaireRemplaceur/{CongeId}/{username}")
     public void ValidationPrimaireRemplaceur(@PathVariable("CongeId") Long CongeId,@PathVariable("username") String username) {
         CongeI.ValidationPrimaireRemplaceur(CongeId,username);
     }
@@ -98,7 +98,7 @@ public class CongeController {
     public void AnnuleValidationPrimaireChefDep(@PathVariable("CongeId") Long CongeId,@PathVariable("username") String username,@PathVariable("AvisPrimaire") String AvisPrimaire) {
         CongeI.AnnuleValidationPrimaireChefDep(CongeId,username,AvisPrimaire);
     }
-    @PostMapping("/AnnuleValidationPrimaireRemplaceur/{CongeId}/{username}/{AvisPrimaire}")
+    @DeleteMapping("/AnnuleValidationPrimaireRemplaceur/{CongeId}/{username}/{AvisPrimaire}")
     public void AnnuleValidationPrimaireRemplaceur(@PathVariable("CongeId") Long CongeId,@PathVariable("username") String username,@PathVariable("AvisPrimaire") String AvisPrimaire) {
         CongeI.AnnuleValidationPrimaireRemplaceur(CongeId,username,AvisPrimaire);
     }
@@ -127,6 +127,24 @@ public class CongeController {
     @GetMapping("/getusernameUserByMatricule/{matricule}")
     public Client getusernameUserByMatricule(@PathVariable("matricule") String matricule){
         return  CongeI.getusernameUserByMatricule(matricule);
+    }
+
+
+    @GetMapping("/getusernameUserByMatriculeForDirecteur/{matricule}")
+    public Admin getusernameUserByMatriculeForDirecteur(@PathVariable("matricule") String matricule){
+        return  CongeI.getusernameUserByMatriculeForDirecteur(matricule);
+    }
+
+
+    @GetMapping("/findRemplaceurByUserName/{username}")
+    public Boolean findRemplaceurByUserName(@PathVariable("username") String username){
+        return  CongeI.findRemplaceurByUserName(username);
+    }
+
+
+    @GetMapping("/GetCongesForRemplaceur/{username}")
+    public List<Conge> GetCongesForRemplaceur(@PathVariable("username") String username){
+        return  CongeI.GetCongesForRemplaceur(username);
     }
 
 

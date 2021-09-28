@@ -41,6 +41,8 @@ public interface ClientRepository extends CrudRepository<Client, Long> {
 
 	Client findByIdUser(long iduser);
 
+	Client findByUsernameUser(String username);
+
 	@Query("SELECT c FROM Client c WHERE c.matricule= :matricule")
 	Client getClientByMatricule(@Param("matricule") String matricule) ;
 
@@ -48,6 +50,11 @@ public interface ClientRepository extends CrudRepository<Client, Long> {
 
 	@Query("SELECT matricule FROM Client c WHERE c.usernameUser = :username ")
 	String findMatriculeByUserName(@Param("username")String username);
+
+	@Query("SELECT Remplaceur FROM Client c WHERE c.usernameUser = :username ")
+	Boolean findRemplaceurByUserName(@Param("username")String username);
+
+
 
 
 
