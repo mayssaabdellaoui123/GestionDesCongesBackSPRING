@@ -107,6 +107,7 @@ public class CongeManager implements CongeManagerInterface {
 
         List<Conge> conges = new ArrayList<>();
         for(User userDep:usersDep){
+            if (!userDep.getMatricule().equals(u.getMatriculeBoss()))
             conges.addAll(cr.getCongeByUserIdUser(userDep.getIdUser()));
         }
 
@@ -355,6 +356,13 @@ public class CongeManager implements CongeManagerInterface {
         Client c = cR.getClientByMatricule(matricule);
 
         return c;
+    }
+
+    @Override
+    public Admin getusernameUserByMatriculeForDirecteur(String matricule){
+        Admin a = ar.getAdminByMatricule(matricule);
+
+        return a;
     }
 
 

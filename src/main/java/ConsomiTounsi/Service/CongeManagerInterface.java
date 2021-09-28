@@ -1,5 +1,6 @@
 package ConsomiTounsi.Service;
 
+import ConsomiTounsi.entities.Admin;
 import ConsomiTounsi.entities.Client;
 import ConsomiTounsi.entities.Conge;
 import ConsomiTounsi.entities.DetailsUserConge;
@@ -34,6 +35,8 @@ public interface CongeManagerInterface {
     public Conge getCongeByIdConge(Long idConge);
 
     public Client getusernameUserByMatricule(String matricule);
+
+    public Admin getusernameUserByMatriculeForDirecteur(String matricule);
 
 
 

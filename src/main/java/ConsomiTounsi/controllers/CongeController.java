@@ -130,6 +130,12 @@ public class CongeController {
     }
 
 
+    @GetMapping("/getusernameUserByMatriculeForDirecteur/{matricule}")
+    public Admin getusernameUserByMatriculeForDirecteur(@PathVariable("matricule") String matricule){
+        return  CongeI.getusernameUserByMatriculeForDirecteur(matricule);
+    }
+
+
 
 
 
