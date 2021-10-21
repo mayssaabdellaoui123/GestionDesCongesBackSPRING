@@ -1,5 +1,10 @@
 package ConsomiTounsi.entities;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import java.time.LocalDateTime;
+import java.util.Date;
+
 public class DetailsUserConge {
 
    public  String firstname;
@@ -10,6 +15,78 @@ public class DetailsUserConge {
    public  String phone;
    public String matriculeBossdep;
    public String matriculeRemplaceur;
+
+   public String soldeThisYear ;
+    public String soldeYear_1 ;
+    public String soldeYear_2 ;
+
+    public String total ;
+    public String nmbrDeJourConge ;
+    public String RestDeJourConge ;
+
+    @Temporal(TemporalType.DATE)
+    public Date datevalidationFinale ;
+
+
+
+    public String getSoldeThisYear() {
+        return soldeThisYear;
+    }
+
+    public void setSoldeThisYear(String soldeThisYear) {
+        this.soldeThisYear = soldeThisYear;
+    }
+
+    public String getSoldeYear_1() {
+        return soldeYear_1;
+    }
+
+    public void setSoldeYear_1(String soldeYear_1) {
+        this.soldeYear_1 = soldeYear_1;
+    }
+
+    public String getSoldeYear_2() {
+        return soldeYear_2;
+    }
+
+    public void setSoldeYear_2(String soldeYear_2) {
+        this.soldeYear_2 = soldeYear_2;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
+    }
+
+    public String getNmbrDeJourConge() {
+        return nmbrDeJourConge;
+    }
+
+    public void setNmbrDeJourConge(String nmbrDeJourConge) {
+        this.nmbrDeJourConge = nmbrDeJourConge;
+    }
+
+    public String getRestDeJourConge() {
+        return RestDeJourConge;
+    }
+
+    public void setRestDeJourConge(String restDeJourConge) {
+        RestDeJourConge = restDeJourConge;
+    }
+
+    public Date getDatevalidationFinale() {
+        return datevalidationFinale;
+    }
+
+    public void setDatevalidationFinale(Date datevalidationFinale) {
+        this.datevalidationFinale = datevalidationFinale;
+    }
+
+
+
 
     public void setMatriculeBossdep(String matriculeBossdep) {
         this.matriculeBossdep = matriculeBossdep;

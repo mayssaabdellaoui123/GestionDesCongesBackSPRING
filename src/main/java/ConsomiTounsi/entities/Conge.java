@@ -28,9 +28,100 @@ public class Conge implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date DateFin;
 
+
+    private String userNameVF ;
+
+    public String getUserNameVF() {
+        return userNameVF;
+    }
+
+    public void setUserNameVF(String userNameVF) {
+        this.userNameVF = userNameVF;
+    }
+
+    public String soldeThisYear ;
+    public String soldeYear_1 ;
+    public String soldeYear_2 ;
+
+    public String total ;
+    public String nmbrDeJourConge ;
+    public String RestDeJourConge ;
+
+
+    public LocalDateTime datevalidationFinale ;
+    public LocalDateTime getDatevalidationFinale() {
+        return datevalidationFinale;
+    }
+
+    public void setDatevalidationFinale(LocalDateTime datevalidationFinale) {
+        this.datevalidationFinale = datevalidationFinale;
+    }
+    public LocalDateTime datevalidationPrimaire ;
+    public LocalDateTime getDatevalidationPrimaire() {
+        return datevalidationPrimaire;
+    }
+
+    public void setDatevalidationPrimaire(LocalDateTime datevalidationPrimaire) {
+        this.datevalidationPrimaire = datevalidationPrimaire;
+    }
+
+
+
+    private LocalDateTime dateSaisie;
+
+    public String getSoldeThisYear() {
+        return soldeThisYear;
+    }
+
+    public void setSoldeThisYear(String soldeThisYear) {
+        this.soldeThisYear = soldeThisYear;
+    }
+
+    public String getSoldeYear_1() {
+        return soldeYear_1;
+    }
+
+    public void setSoldeYear_1(String soldeYear_1) {
+        this.soldeYear_1 = soldeYear_1;
+    }
+
+    public String getSoldeYear_2() {
+        return soldeYear_2;
+    }
+
+    public void setSoldeYear_2(String soldeYear_2) {
+        this.soldeYear_2 = soldeYear_2;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
+    }
+
+    public String getNmbrDeJourConge() {
+        return nmbrDeJourConge;
+    }
+
+    public void setNmbrDeJourConge(String nmbrDeJourConge) {
+        this.nmbrDeJourConge = nmbrDeJourConge;
+    }
+
+    public String getRestDeJourConge() {
+        return RestDeJourConge;
+    }
+
+    public void setRestDeJourConge(String restDeJourConge) {
+        RestDeJourConge = restDeJourConge;
+    }
+
+
+
     @Enumerated(EnumType.STRING)
     private TypeConge type;
-    private LocalDateTime dateSaisie;
+
 
     private String AvisPrimaire;
     private String AvisFinale;

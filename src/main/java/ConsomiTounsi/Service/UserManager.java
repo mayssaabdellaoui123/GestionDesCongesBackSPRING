@@ -126,4 +126,6 @@ public class UserManager implements UserManagerInterface //, UserDetailsService 
 		return  ur.retrieveMatriculeClientByUsername(Username);
 
 	}*/
+
+
 }

@@ -23,8 +23,9 @@ public interface CongeManagerInterface {
     void ValidationPrimaireRemplaceur (Long CongeId, String username);
     void AnnuleValidationPrimaireRemplaceur (Long CongeId, String username, String AvisPrimaire);
 
-    void ValidationFinale(Long CongeId);
-    void AnnuleValidationFinale(Long CongeId, String username);
+    void ValidationFinale (String userNameVF ,Long CongeId, String soldeThisYear , String soldeYear_1, String soldeYear_2 , String total ,  String nmbrDeJourConge ,  String RestDeJourConge, String AvisFinale, Boolean TypeValidation );
+
+   // void AnnuleValidationFinale(Long CongeId, String username);
 
     public DetailsUserConge getDetailsUserByIdConge(Long idConge);
     List<Conge> GetCongesForDirecGen();

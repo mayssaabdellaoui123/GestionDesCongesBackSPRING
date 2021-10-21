@@ -43,6 +43,8 @@ public interface UserRepository extends JpaRepository<User,Long> {
 	List<User> RetiveUserByFirstAndLastNameJPQL(@Param("fn") String fn , @Param("ln") String ln);
 
 
+
+
 	@Query("SELECT u FROM User u WHERE u.roleUser = :r ")
 	List<User>  findbyRole( UserRole r ) ;
 

@@ -262,10 +262,12 @@ public class ClientRessources {
 
     @GetMapping("/getClientByMAtricule/{matricule}")
     public Client getClientByMAtricule(@PathVariable("matricule") String matricule  ){
-
-
-
         return cr.findClientByMatricule(matricule);}
+
+    @GetMapping("/getUserNameFromMatricule/{matricule}")
+    public String getUserNameFromMatricule(@PathVariable("matricule") String matricule  ){
+        return cs.getUserNameFromMatricule(matricule);
+    }
 
 
 

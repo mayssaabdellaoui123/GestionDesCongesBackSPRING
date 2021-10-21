@@ -1,6 +1,7 @@
 package ConsomiTounsi.controllers;
 
 
+import ConsomiTounsi.Service.ClientManager;
 import ConsomiTounsi.Service.CongeManagerInterface;
 import ConsomiTounsi.controllers.simple_controllers.MessageResponseModel;
 import ConsomiTounsi.entities.*;
@@ -26,6 +27,9 @@ public class CongeController {
 
     @Autowired
     CongeRepository cr ;
+
+    @Autowired
+    ClientManager cm;
 
 
 
@@ -103,15 +107,15 @@ public class CongeController {
         CongeI.AnnuleValidationPrimaireRemplaceur(CongeId,username,AvisPrimaire);
     }
 
-    @DeleteMapping("/ValidationFinale/{CongeId}")
-    public void ValidationFinale(@PathVariable("CongeId") Long CongeId) {
-        CongeI.ValidationFinale(CongeId);
+    @DeleteMapping("/ValidationFinale/{userNameVF}/{CongeId}/{soldeThisYear}/{soldeYear_1}/{soldeYear_2}/{total}/{nmbrDeJourConge}/{RestDeJourConge}/{AvisFinale}/{TypeValidation}")
+    public void ValidationFinale(@PathVariable("userNameVF") String userNameVF ,@PathVariable("CongeId") Long CongeId , @PathVariable("soldeThisYear") String soldeThisYear ,@PathVariable("soldeYear_1") String soldeYear_1, @PathVariable("soldeYear_2") String soldeYear_2 ,@PathVariable("total") String total , @PathVariable("nmbrDeJourConge") String nmbrDeJourConge , @PathVariable("RestDeJourConge") String RestDeJourConge ,@PathVariable("AvisFinale") String AvisFinale,@PathVariable("TypeValidation") Boolean TypeValidation ) {
+        CongeI.ValidationFinale(userNameVF,CongeId,soldeThisYear,soldeYear_1,soldeYear_2,total,nmbrDeJourConge,RestDeJourConge,AvisFinale,TypeValidation );
     }
-    @DeleteMapping("/AnnuleValidationFinale/{CongeId}/{AvisFinale}")
+   /* @DeleteMapping("/AnnuleValidationFinale/{CongeId}/{AvisFinale}")
     public void AnnuleValidationFinale(@PathVariable("CongeId") Long CongeId,@PathVariable("AvisFinale") String AvisFinale) {
         CongeI.AnnuleValidationFinale(CongeId,AvisFinale);
     }
-
+*/
 
     @GetMapping("/getDetailsUserByIdConge/{idConge}")
     public DetailsUserConge getDetailsUserByIdConge(@PathVariable("idConge") Long idConge) {
@@ -147,6 +151,11 @@ public class CongeController {
         return  CongeI.GetCongesForRemplaceur(username);
     }
 
+
+    @GetMapping("/retriveRemplaceur/{username}")
+    public List<User> retriveRemplaceur(@PathVariable("username")  String username ){
+        return cm.retriveRemplaceur(username);
+    }
 
 
 

@@ -23,4 +23,6 @@ public interface ClientManagerInterface {
     Client AffectationRemplaceur(String Matricule);
     Client DesAffectationRemplaceur(String Matricule);
 
+    String getUserNameFromMatricule(String matricule);
+
 }

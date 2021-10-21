@@ -79,10 +79,6 @@ public class DepartementManager implements DepartementManagerInterface{
 
         Description=Description+" Matricule Boss : "+" => "+dp.getMatriculeBoss();
 
-        /*if (!OldD.getMatriculeBoss().equals(dp.getMatriculeBoss())){
-            Description=Description+" Matricule Boss : "+ OldD.getMatriculeBoss()+" => "+dp.getMatriculeBoss();
-        }*/
-
         hi.AddHistory("DEPARTMENT",username,TypeHistorique.NOT_IMPORTANT,Description);
         ////////
         return dr.save(dp);

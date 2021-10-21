@@ -7,15 +7,18 @@ import ConsomiTounsi.entities.*;
 
 import ConsomiTounsi.entities.Client;
 
+import ConsomiTounsi.repository.AdminRepository;
 import ConsomiTounsi.repository.ClientRepository;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 
 import ConsomiTounsi.configuration.config.EmailValidator;
+import ConsomiTounsi.repository.DepartementRepository;
 import ConsomiTounsi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -34,6 +37,12 @@ public class ClientManager implements ClientManagerInterface{
 
 	@Autowired
 	UserManagerInterface um;
+
+	@Autowired
+	DepartementRepository dr;
+
+	@Autowired
+	AdminRepository ar;
 
 	@Override
 	public Client AffectationRemplaceur(String Matricule) {
@@ -220,5 +229,93 @@ public class ClientManager implements ClientManagerInterface{
 
 		return cr.save(Cl);
 	}
+
+	public List<User> retriveRemplaceur( String username ) {
+
+		System.out.println("username :" + username );
+
+		List<Long> ListIdUsers = cr.getRemplaceurIdUser(Boolean.TRUE);
+
+		System.out.println("ListIdUsers :" + ListIdUsers );
+
+		Admin a = ar.findByUsernameUser(username);
+
+		System.out.println("chef :" + a );
+
+		List<User> listremplaceur = new ArrayList<>();
+
+
+		String matricule = a.getMatriculeBoss();
+
+		System.out.println("matricule :" + matricule );
+
+		long iddep = dr.getIdDepartmentByMatriculeBoss(matricule);
+
+
+		for ( long id: ListIdUsers ) {
+
+			System.out.println("id :" + id );
+			User u = ur.findByIdUser(id);
+			System.out.println("u :" + u );
+
+			System.out.println("u.getDepartement() 9bal :" + u.getDepartement() );
+			System.out.println("u.getDepartement().getIdDepartement() 9bal :" + u.getDepartement().getIdDepartement() );
+			if(u.getDepartement().getIdDepartement()==iddep){
+				System.out.println("u.getDepartement() ba3ed:" + u.getDepartement().getIdDepartement() );
+
+				System.out.println("listremplaceur :" + listremplaceur );
+				listremplaceur.add(u);
+			}
+		}
+
+		System.out.println("listremplaceur :" + listremplaceur );
+		return listremplaceur;
+
+		//List<Client> ListClients = cr.RetiveRemplaceur(Boolean.TRUE);
+		/*
+
+		System.out.println("matricule :" + matricule );
+		long iddep = dr.getIdDepartmentByMatriculeBoss(matricule);
+
+		System.out.println("iddep :" + iddep );
+
+		List<User> listUserdep = ur.getUserByIdDep(iddep);
+
+		System.out.println("listUserdep :" + listUserdep );
+
+		List<User> listremplaceur = new ArrayList<>();
+
+		for ( User i: listUserdep ) {
+			/*System.out.println("i :" + i.getIdUser() );
+			long id=i.getIdUser();
+
+			System.out.println("mou3a  :" + id );
+		    Client client = cr.findByIdUser(id);
+
+			System.out.println("client :" + client );*/
+
+		/*	if ( (cr.findByIdUser(i.getIdUser()).getRemplaceur()) == Boolean.TRUE){
+				listremplaceur.add(i);
+			}
+
+			System.out.println("listeremplaceur :" + listremplaceur );
+
+		}
+
+		System.out.println("listeremplaceur :" + listremplaceur );
+
+		return listremplaceur;
+		*/
+
+	}
+
+	@Override
+	public String getUserNameFromMatricule(String matricule) {
+
+		Client c = cr.getClientByMatricule(matricule);
+
+		return c.getUsernameUser();
+	}
+
 
 }
