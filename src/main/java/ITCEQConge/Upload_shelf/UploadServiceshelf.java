@@ -1,0 +1,81 @@
+package ITCEQConge.Upload_shelf;
+
+
+import ITCEQConge.entities.Employe;
+import ITCEQConge.repository.EmployeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Optional;
+
+@Service
+public class UploadServiceshelf {
+
+   /* @Autowired
+    ShelfRepository productRepository;
+    @Autowired
+    EventRepository eventRepository;*/
+
+    @Autowired
+    EmployeRepository productRepository;
+
+
+    private String pathlocal = "E:\\GitHub\\GestionDesConges-FrontAngular\\src\\assets\\images\\products\\";
+    public ResponseEntity<?> uploadFil (MultipartFile file ) throws IOException {
+        Optional<Employe> Shelf =  productRepository.findTopByOrderByIdUserDesc() ;
+        if ( !Shelf.isPresent())
+            throw new IllegalStateException("nope") ;
+        String filName = pathlocal+Shelf.get().getIdUser()+".jpg";
+        File convetedFile = new File( filName);
+
+        convetedFile.createNewFile();
+
+        FileOutputStream fout  = new FileOutputStream(convetedFile);
+
+        fout.write(file.getBytes()) ;
+
+        fout.close();
+        Employe p = Shelf.get();
+        String path="assets/images/products/"+p.getIdUser()+".jpg";
+        System.out.println(path);
+        p.setImage_URL(path);
+        productRepository.save(p);
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
+
+    }
+
+
+ /*   public ResponseEntity<?> uploadFilEvent (MultipartFile file ) throws IOException {
+        Optional<Event> Event =  eventRepository.findTopByOrderByIdEventDesc() ;
+        if ( !Event.isPresent())
+            throw new IllegalStateException("nope") ;
+        String filName = pathlocal+Event.get().getIdEvent()+".jpg";
+        File convetedFile = new File( filName);
+
+        convetedFile.createNewFile();
+
+        FileOutputStream fout  = new FileOutputStream(convetedFile);
+
+        fout.write(file.getBytes()) ;
+
+        fout.close();
+        Event p = Event.get();
+        String path="assets/images/products/"+p.getIdEvent()+".jpg";
+        System.out.println(path);
+        p.setImage_URL(path);
+        eventRepository.save(p);
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
+
+    }*/
+
+
+}
+
