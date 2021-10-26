@@ -14,10 +14,10 @@ import java.util.Collections;
 
 @EnableSwagger2
 @SpringBootApplication
-public class ConsomiTounsiApplication {
+public class GestionDeCongeApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ConsomiTounsiApplication.class, args);
+        SpringApplication.run(GestionDeCongeApplication.class, args);
     }
 
     @Bean
